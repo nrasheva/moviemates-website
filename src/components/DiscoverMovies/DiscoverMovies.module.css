@@ -1,0 +1,10 @@
+.discover-movies {
+  background-color: red;
+  display: flex;
+  height: 100vh;
+}
+
+.genres {
+  display: flex;
+  flex-direction: column;
+}
