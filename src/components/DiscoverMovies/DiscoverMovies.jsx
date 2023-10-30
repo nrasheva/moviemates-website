@@ -2,8 +2,10 @@ import { useEffect } from 'react';
 import { getGenres } from '../../services/genres.service';
 import { useDispatch, useSelector } from 'react-redux';
 import { setGenres } from '../../redux/reducers/genres';
+import { setMovies } from '../../redux/reducers/movies';
+import { discoverMovies } from '../../services/movies.service';
 
-export const Genres = () => {
+export const DiscoverMovies = () => {
   const genres = useSelector((state) => state.genres.genres);
 
   const dispatch = useDispatch();
@@ -20,8 +22,14 @@ export const Genres = () => {
     })();
   }, [dispatch]);
 
-  const handleGenre = (id) => {
-    console.log(id);
+  const handleGenre = async (id) => {
+    try {
+      const { movies } = await discoverMovies(id);
+
+      dispatch(setMovies(movies));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
