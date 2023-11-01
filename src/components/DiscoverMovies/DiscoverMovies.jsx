@@ -7,6 +7,7 @@ import { setMovies } from '../../redux/reducers/movies';
 import { discoverMovies } from '../../services/movies.service';
 
 export const DiscoverMovies = () => {
+  const [activeGenre, setActiveGenre] = useState(-1);
   const [activeMovie, setActiveMovie] = useState({});
 
   const genres = useSelector((state) => state.genres.genres);
@@ -19,6 +20,8 @@ export const DiscoverMovies = () => {
       try {
         const { genres } = await getGenres();
 
+        setActiveGenre(genres[0].id);
+
         dispatch(setGenres(genres));
       } catch (error) {
         console.log(error);
@@ -26,34 +29,65 @@ export const DiscoverMovies = () => {
     })();
   }, [dispatch]);
 
-  const handleGenre = async (genreId) => {
-    try {
-      const { movies } = await discoverMovies(genreId);
+  useEffect(() => {
+    if (activeGenre !== -1) {
+      (async () => {
+        try {
+          const { movies } = await discoverMovies(activeGenre);
 
-      setActiveMovie(movies[0]);
+          setActiveMovie(movies[0]);
 
-      dispatch(setMovies(movies));
-    } catch (error) {
-      console.log(error);
+          dispatch(setMovies(movies));
+        } catch (error) {
+          console.log(error);
+        }
+      })();
     }
+  }, [activeGenre, dispatch]);
+
+  const handleGenreName = (genreId) => {
+    const genre = genres.find((genre) => genre.id === genreId);
+    return genre.name;
   };
 
   return (
-    <div className={styles['discover-movies']}>
-      <div className={styles.genres}>
-        {genres.map((genre) => (
-          <button key={genre.id} onClick={() => handleGenre(genre.id)}>
-            {genre.name}
-          </button>
-        ))}
-      </div>
-      {movies.length ? <h2>{activeMovie.title}</h2> : null}
-      <div>
-        {movies.map((movie, index) => (
-          <button key={movie.id} onClick={() => setActiveMovie(movies[index])}>
-            {movie.title}
-          </button>
-        ))}
+    <div
+      className={styles['discover-movies']}
+      style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${activeMovie.backdrop_path})` }}
+    >
+      <div className={styles['discover-movies-content']}>
+        <div className={styles['genres-selector']}>
+          {genres.slice(0, 5).map((genre) => (
+            <button
+              key={genre.id}
+              onClick={() => setActiveGenre(genre.id)}
+              style={{ opacity: activeGenre === genre.id ? 1 : 0.5 }}
+            >
+              {genre.name}
+            </button>
+          ))}
+        </div>
+        {movies.length ? (
+          <div>
+            <h2>{activeMovie.title}</h2>
+            <p className='font-m'>{activeMovie.overview}</p>
+            <div className={styles['movie-genres']}>
+              {activeMovie.genre_ids &&
+                activeMovie.genre_ids.map((id) => (
+                  <p className='font-m' key={id}>
+                    {handleGenreName(id)}
+                  </p>
+                ))}
+            </div>
+          </div>
+        ) : null}
+        {/* <div>
+          {movies.map((movie, index) => (
+            <button key={movie.id} onClick={() => setActiveMovie(movies[index])}>
+              {movie.title}
+            </button>
+          ))}
+        </div> */}
       </div>
     </div>
   );
