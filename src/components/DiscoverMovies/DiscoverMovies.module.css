@@ -4,7 +4,7 @@
   position: relative;
 }
 
-.discover-movies-content {
+.discover-movies-container {
   align-items: center;
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.25) 100%);
   display: flex;
@@ -19,17 +19,22 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  height: 100%;
+  height: calc(100% - 200px);
   justify-content: center;
-  padding: 0 10vw 0 2rem;
+  list-style-position: inside;
+  padding-right: 10vw;
 }
 
-.genres-selector button {
+.genres-selector li {
   background: none;
   border: none;
-  color: white;
   cursor: pointer;
   font: 400 1rem 'Poppins';
+  text-wrap: nowrap;
+}
+
+.discover-movies-content {
+  width: 50%;
 }
 
 .movie-genres {

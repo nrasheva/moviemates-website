@@ -1,11 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Staatliches&display=swap');
 
 h2 {
-  color: white;
   font: 700 3rem 'Poppins';
 }
 
 .font-m {
-  color: white;
   font: 400 0.95rem 'Poppins';
+}
+
+.black {
+  color: black;
+}
+
+.white {
+  color: white;
+}
+
+.semi-bold {
+  font-weight: 600;
 }

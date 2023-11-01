@@ -1,0 +1,7 @@
+.filled {
+  background-color: rgb(255, 175, 60);
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+  padding: 0.75rem 2rem;
+}

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setGenres } from '../../redux/reducers/genres';
 import { setMovies } from '../../redux/reducers/movies';
 import { discoverMovies } from '../../services/movies.service';
+import { Button } from '../Button/Button';
 
 export const DiscoverMovies = () => {
   const [activeGenre, setActiveGenre] = useState(-1);
@@ -55,30 +56,32 @@ export const DiscoverMovies = () => {
       className={styles['discover-movies']}
       style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${activeMovie.backdrop_path})` }}
     >
-      <div className={styles['discover-movies-content']}>
-        <div className={styles['genres-selector']}>
+      <div className={styles['discover-movies-container']}>
+        <ul className={styles['genres-selector']}>
           {genres.slice(0, 5).map((genre) => (
-            <button
+            <li
+              className='font-m white'
               key={genre.id}
               onClick={() => setActiveGenre(genre.id)}
               style={{ opacity: activeGenre === genre.id ? 1 : 0.5 }}
             >
               {genre.name}
-            </button>
+            </li>
           ))}
-        </div>
+        </ul>
         {movies.length ? (
-          <div>
-            <h2>{activeMovie.title}</h2>
-            <p className='font-m'>{activeMovie.overview}</p>
+          <div className={styles['discover-movies-content']}>
+            <h2 className='white'>{activeMovie.title}</h2>
+            <p className='font-m white'>{activeMovie.overview}</p>
             <div className={styles['movie-genres']}>
               {activeMovie.genre_ids &&
                 activeMovie.genre_ids.map((id) => (
-                  <p className='font-m' key={id}>
+                  <p className='font-m white' key={id}>
                     {handleGenreName(id)}
                   </p>
                 ))}
             </div>
+            <Button text='View discussion' />
           </div>
         ) : null}
         {/* <div>
