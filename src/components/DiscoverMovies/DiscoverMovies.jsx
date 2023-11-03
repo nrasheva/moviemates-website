@@ -1,11 +1,14 @@
+import 'swiper/css';
 import styles from './DiscoverMovies.module.css';
-import { useEffect, useState } from 'react';
-import { getGenres } from '../../services/genres.service';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { Button } from '../Button/Button';
+import { discoverMovies } from '../../services/movies.service';
+import { getGenres } from '../../services/genres.service';
 import { setGenres } from '../../redux/reducers/genres';
 import { setMovies } from '../../redux/reducers/movies';
-import { discoverMovies } from '../../services/movies.service';
-import { Button } from '../Button/Button';
 
 export const DiscoverMovies = () => {
   const [activeGenre, setActiveGenre] = useState(-1);
@@ -35,6 +38,9 @@ export const DiscoverMovies = () => {
       (async () => {
         try {
           const { movies } = await discoverMovies(activeGenre);
+
+          // Keep only the first sentence of the overview
+          movies.forEach((movie) => (movie.overview = movie.overview.split('.')[0]));
 
           setActiveMovie(movies[0]);
 
@@ -70,27 +76,39 @@ export const DiscoverMovies = () => {
           ))}
         </ul>
         {movies.length ? (
-          <div className={styles['discover-movies-content']}>
-            <h2 className='white'>{activeMovie.title}</h2>
-            <p className='font-m white'>{activeMovie.overview}</p>
-            <div className={styles['movie-genres']}>
-              {activeMovie.genre_ids &&
-                activeMovie.genre_ids.map((id) => (
-                  <p className='font-m white' key={id}>
-                    {handleGenreName(id)}
-                  </p>
-                ))}
+          <>
+            <div className={styles['discover-movies-content']}>
+              <h2 className='white'>{activeMovie.title}</h2>
+              <p className='font-m white'>{activeMovie.overview}</p>
+              <div className={styles['movie-genres']}>
+                {activeMovie.genre_ids &&
+                  activeMovie.genre_ids.map((id) => (
+                    <p className='font-m white' key={id}>
+                      {handleGenreName(id)}
+                    </p>
+                  ))}
+              </div>
+              <Button text='View discussion' />
             </div>
-            <Button text='View discussion' />
-          </div>
+            <div className={styles['discover-movies-content']}>
+              <Swiper className={styles.swiper} slidesPerView={3} spaceBetween={20}>
+                {movies.map((movie) => (
+                  <SwiperSlide
+                    className={`${styles.slide} ${activeMovie.id === movie.id ? styles.active : ''}`}
+                    key={movie.id}
+                    onClick={() => setActiveMovie(movie)}
+                  >
+                    <span
+                      style={{
+                        backgroundImage: `url(https://image.tmdb.org/t/p/w300/${movie.poster_path})`,
+                      }}
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </>
         ) : null}
-        {/* <div>
-          {movies.map((movie, index) => (
-            <button key={movie.id} onClick={() => setActiveMovie(movies[index])}>
-              {movie.title}
-            </button>
-          ))}
-        </div> */}
       </div>
     </div>
   );

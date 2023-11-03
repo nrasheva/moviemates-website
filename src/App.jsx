@@ -1,7 +1,8 @@
 import './App.css';
+
+import { DiscoverMovies } from './components/DiscoverMovies/DiscoverMovies';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import { DiscoverMovies } from './components/DiscoverMovies/DiscoverMovies';
 
 function App() {
   return (
