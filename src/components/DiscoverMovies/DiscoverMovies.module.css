@@ -1,6 +1,7 @@
 .discover-movies {
+  background-position: center;
   background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
 }
 
@@ -38,6 +39,7 @@
   display: flex;
   flex: 1;
   height: 100%;
+  max-width: 100%;
   min-width: 0;
 }
 
@@ -85,4 +87,19 @@
 
 .active span {
   transform: scale(1);
+}
+
+@media only screen and (max-width: 768px) {
+  .discover-movies-container {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.25) 100%);
+    flex-direction: column;
+  }
+
+  .genres-selector {
+    flex-direction: row;
+  }
+
+  .swiper {
+    width: 100%;
+  }
 }

@@ -8,6 +8,10 @@ h2 {
   font: 400 0.95rem 'Poppins';
 }
 
+.font-s {
+  font: 400 0.85rem 'Poppins';
+}
+
 .black {
   color: black;
 }

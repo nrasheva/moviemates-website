@@ -83,7 +83,7 @@ export const DiscoverMovies = () => {
               <div className={styles['movie-genres']}>
                 {activeMovie.genre_ids &&
                   activeMovie.genre_ids.map((id) => (
-                    <p className='font-m white' key={id}>
+                    <p className='font-s white' key={id}>
                       {handleGenreName(id)}
                     </p>
                   ))}
