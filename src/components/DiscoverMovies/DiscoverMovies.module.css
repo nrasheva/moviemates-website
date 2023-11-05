@@ -31,7 +31,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  font: 400 1rem 'Poppins';
+  font: 400 1rem var(--font);
   text-wrap: nowrap;
 }
 

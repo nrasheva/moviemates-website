@@ -78,7 +78,7 @@ export const DiscoverMovies = () => {
         {movies.length ? (
           <>
             <div className={styles['discover-movies-content']}>
-              <h2 className='white'>{activeMovie.title}</h2>
+              <h1 className='white'>{activeMovie.title}</h1>
               <p className='font-m white'>{activeMovie.overview}</p>
               <div className={styles['movie-genres']}>
                 {activeMovie.genre_ids &&
