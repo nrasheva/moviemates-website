@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button } from '../components/Button/Button';
 import { Input } from '../components/Input/Input';
+import { register } from '../services/authentication.service';
 import { useNavigate } from 'react-router-dom';
 import { validateCredentials } from '../tools';
 
@@ -22,6 +23,15 @@ export const RegisterPage = () => {
   }, [email, password, submitted]);
 
   const handleRegister = async () => {
+    try {
+      await register(email, password);
+
+      navigate('/login');
+    } catch (error) {
+      console.log(error);
+      setError(error.response.data.message);
+    }
+
     setSubmitted(true);
   };
 

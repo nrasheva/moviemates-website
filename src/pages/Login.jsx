@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Button } from '../components/Button/Button';
 import { Input } from '../components/Input/Input';
+import { login } from '../services/authentication.service';
+import { setIsAuthenticated } from '../redux/reducers/authentication';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { validateCredentials } from '../tools';
 
@@ -10,6 +13,8 @@ export const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [warning, setWarning] = useState(false);
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -22,6 +27,18 @@ export const LoginPage = () => {
   }, [email, password, submitted]);
 
   const handleLogin = async () => {
+    try {
+      const { token } = await login(email, password);
+
+      localStorage.setItem('token', token);
+
+      dispatch(setIsAuthenticated(true));
+
+      navigate('/discover');
+    } catch (error) {
+      console.log(error);
+      setError(error.response.data.message);
+    }
     setSubmitted(true);
   };
 
