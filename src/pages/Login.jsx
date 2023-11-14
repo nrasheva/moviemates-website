@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Button } from '../components/Button/Button';
-import { Input } from '../components/Input/Input';
-import { login } from '../services/authentication.service';
-import { setIsAuthenticated } from '../redux/reducers/authentication';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+import { Button } from '../components/Button/Button';
+import { Input } from '../components/Input/Input';
+import { setIsAuthenticated } from '../redux/reducers/authentication';
+import { login } from '../services/authentication.service';
 import { validateCredentials } from '../tools';
 
 export const LoginPage = () => {

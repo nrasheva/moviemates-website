@@ -1,6 +1,5 @@
-import styles from './Comments.module.css';
-
 import { useEffect, useState } from 'react';
+
 import { getComments } from '../../services/comments.service';
 
 const comments = [
@@ -58,7 +57,7 @@ export const Comments = () => {
   }, []);
 
   return (
-    <div className={styles['parent-comments']}>
+    <div>
       {comments
         .filter((comment) => !comment.parent) // Top-level comments (no parent)
         .map((comment) => (

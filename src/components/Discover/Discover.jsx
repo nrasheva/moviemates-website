@@ -1,15 +1,15 @@
 import 'swiper/css';
-import styles from './Discover.module.css';
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { Button } from '../Button/Button';
-import { discoverMovies } from '../../services/movies.service';
-import { getGenres } from '../../services/genres.service';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import styles from './Discover.module.css';
 import { setGenres } from '../../redux/reducers/genres';
 import { setMovies } from '../../redux/reducers/movies';
-import { useNavigate } from 'react-router-dom';
+import { getGenres } from '../../services/genres.service';
+import { discoverMovies } from '../../services/movies.service';
+import { Button } from '../Button/Button';
 
 export const Discover = () => {
   const [activeGenre, setActiveGenre] = useState(-1);
@@ -81,8 +81,7 @@ export const Discover = () => {
   return (
     <div
       className={styles['discover-movies']}
-      style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${activeMovie.backdrop_path})` }}
-    >
+      style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${activeMovie.backdrop_path})` }}>
       <div className={styles['discover-movies-container']}>
         <ul className={styles['genres-selector']}>
           {genres.slice(0, 5).map((genre) => (
@@ -90,8 +89,7 @@ export const Discover = () => {
               className='font-m white'
               key={genre.id}
               onClick={() => setActiveGenre(genre.id)}
-              style={{ opacity: activeGenre === genre.id ? 1 : 0.5 }}
-            >
+              style={{ opacity: activeGenre === genre.id ? 1 : 0.5 }}>
               {genre.name}
             </li>
           ))}
@@ -121,8 +119,7 @@ export const Discover = () => {
                   <SwiperSlide
                     className={`${styles.slide} ${activeMovie.id === movie.id ? styles.active : ''}`}
                     key={movie.id}
-                    onClick={() => setActiveMovie(movie)}
-                  >
+                    onClick={() => setActiveMovie(movie)}>
                     <span
                       style={{
                         backgroundImage: `url(https://image.tmdb.org/t/p/w300/${movie.poster_path})`,

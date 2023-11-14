@@ -1,10 +1,11 @@
 import './App.css';
 
-import { Navigation } from './components/Navigation/Navigation';
-import { Outlet } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { store } from './redux/store';
 import { useLayoutEffect } from 'react';
+import { Provider } from 'react-redux';
+import { Outlet } from 'react-router-dom';
+
+import { Navigation } from './components/Navigation/Navigation';
+import { store } from './redux/store';
 
 function App() {
   useLayoutEffect(() => {

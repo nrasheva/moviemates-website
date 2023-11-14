@@ -1,5 +1,6 @@
-import { authenticationReducer } from './reducers/authentication';
 import { configureStore } from '@reduxjs/toolkit';
+
+import { authenticationReducer } from './reducers/authentication';
 import { genresReducer } from './reducers/genres';
 import { moviesReducer } from './reducers/movies';
 

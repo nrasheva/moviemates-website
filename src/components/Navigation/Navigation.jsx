@@ -1,9 +1,9 @@
-import styles from './Navigation.module.css';
-
-import { useDispatch, useSelector } from 'react-redux';
 import { useLayoutEffect, useState } from 'react';
-import { setIsAuthenticated } from '../../redux/reducers/authentication';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+import styles from './Navigation.module.css';
+import { setIsAuthenticated } from '../../redux/reducers/authentication';
 
 const MENU_ITEMS = { protected: ['profile'], public: ['home', 'login', 'register'] };
 
