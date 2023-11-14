@@ -1,19 +1,24 @@
 import './index.css';
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.jsx';
-import { CommentsrPage } from './pages/Comments.jsx';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { CommentsPage } from './pages/Comments.jsx';
 import { DiscoverPage } from './pages/Discover';
 import { HomePage } from './pages/Home';
 import { LoginPage } from './pages/Login';
 import { NotFoundPage } from './pages/NotFoundPage/NotFound.jsx';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
 import { RegisterPage } from './pages/Register';
 
 const router = createBrowserRouter([
   {
     children: [
+      {
+        element: <CommentsPage />,
+        path: '/comments/:movieId',
+      },
       {
         element: <DiscoverPage />,
         path: '/discover',
@@ -27,16 +32,12 @@ const router = createBrowserRouter([
         path: '/login',
       },
       {
-        element: <RegisterPage />,
-        path: '/register',
-      },
-      {
-        element: <CommentsrPage />,
-        path: '/comments/:movieId',
-      },
-      {
         element: <NotFoundPage />,
         path: '*',
+      },
+      {
+        element: <RegisterPage />,
+        path: '/register',
       },
     ],
     element: <App />,

@@ -1,5 +1,5 @@
-import { DiscoverMovies } from '../components/DiscoverMovies/DiscoverMovies';
+import { Discover } from '../components/Discover/Discover';
 
 export const DiscoverPage = () => {
-  return <DiscoverMovies />;
+  return <Discover />;
 };

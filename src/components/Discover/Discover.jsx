@@ -1,5 +1,5 @@
 import 'swiper/css';
-import styles from './DiscoverMovies.module.css';
+import styles from './Discover.module.css';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,8 +9,9 @@ import { discoverMovies } from '../../services/movies.service';
 import { getGenres } from '../../services/genres.service';
 import { setGenres } from '../../redux/reducers/genres';
 import { setMovies } from '../../redux/reducers/movies';
+import { useNavigate } from 'react-router-dom';
 
-export const DiscoverMovies = () => {
+export const Discover = () => {
   const [activeGenre, setActiveGenre] = useState(-1);
   const [activeMovie, setActiveMovie] = useState({});
 
@@ -18,6 +19,8 @@ export const DiscoverMovies = () => {
   const movies = useSelector((state) => state.movies.movies);
 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -57,6 +60,24 @@ export const DiscoverMovies = () => {
     return genre.name;
   };
 
+  // Format the data
+  const dateString = activeMovie.release_date;
+
+  const date = new Date(dateString);
+
+  const options = { day: 'numeric', month: 'long', year: 'numeric' };
+
+  const formattedDate = date.toLocaleDateString('en-GB', options);
+
+  const handleViewDiscussion = () => {
+    const movieId = activeMovie.id;
+    try {
+      navigate(`/comments/${movieId}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div
       className={styles['discover-movies']}
@@ -79,7 +100,7 @@ export const DiscoverMovies = () => {
           <>
             <div className={styles['discover-movies-content']}>
               <h1 className='white'>{activeMovie.title}</h1>
-              <p className='font-m white'>{activeMovie.overview}</p>
+              <p className='font-m white'>{`${activeMovie.overview}.`}</p>
               <div className={styles['movie-genres']}>
                 {activeMovie.genre_ids &&
                   activeMovie.genre_ids.map((id) => (
@@ -88,7 +109,11 @@ export const DiscoverMovies = () => {
                     </p>
                   ))}
               </div>
-              <Button text='View discussion' />
+              <div className={styles['movie-more-info']}>
+                <p className='font-s white'>{`${activeMovie.vote_average}/10`}</p>
+                <p className='font-s white'>{formattedDate}</p>
+              </div>
+              <Button text='View discussion' type='filled' onClick={handleViewDiscussion} />
             </div>
             <div className={styles['discover-movies-content']}>
               <Swiper className={styles.swiper} slidesPerView={3} spaceBetween={20}>
