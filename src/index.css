@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and(min-width: 1200px) {
+  #root {
+    min-height: 100vh;
+  }
+}
+
+/*-------------------------Variables-------------------------*/
+
+:root {
+  --font: 'Poppins';
+  --horizontal-padding: 10vw;
+  --hunyadi-yellow: rgb(255, 185, 90);
+  --nav-height: 60px;
+  --orange-web: rgb(255, 175, 60);
+  --vertical-padding: 100px;
+}

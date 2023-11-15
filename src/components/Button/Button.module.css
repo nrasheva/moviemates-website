@@ -1,0 +1,22 @@
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 3rem;
+  white-space: nowrap;
+}
+
+.empty {
+  color: var(--orange-web);
+}
+
+.filled {
+  background-color: var(--orange-web);
+  border-radius: 1rem;
+  color: black;
+  padding: 0 2rem;
+}
+
+.filled:hover {
+  background-color: var(--hunyadi-yellow);
+}

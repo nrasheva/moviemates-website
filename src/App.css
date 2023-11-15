@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Staatliches&display=swap');
+
+h1 {
+  font: 700 3rem var(--font);
+}
+
+h2 {
+  font: 700 2rem var(--font);
+}
+
+.font-m {
+  font: 400 0.95rem var(--font);
+}
+
+.font-s {
+  font: 400 0.85rem var(--font);
+}
+
+.black {
+  color: black;
+}
+
+.white {
+  color: white;
+}
+
+.semi-bold {
+  font-weight: 600;
+}
+
+.link {
+  color: var(--orange-web);
+  cursor: pointer;
+}
+
+.link:hover {
+  color: var(--hunyadi-yellow);
+}
+
+/*-------------------------Auth-------------------------*/
+
+.auth {
+  display: flex;
+  flex: 1;
+  padding-top: var(--nav-height);
+}
+
+.column {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  padding: var(--nav-height) var(--horizontal-padding);
+}
+
+.column:first-of-type {
+  display: none;
+  flex: 1.5;
+}
+
+.column:last-of-type {
+  background-color: rgb(25, 25, 25);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+form input:first-of-type {
+  margin-top: 2rem;
+}
+
+.auth-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.form-messages {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+@media only screen and (min-width: 1200px) {
+  .column:first-of-type {
+    background-color: var(--orange-web);
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .column:last-of-type {
+    display: flex;
+    padding: var(--nav-height) calc(var(--horizontal-padding) / 2);
+  }
+}
