@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
-const baseURL = 'http://localhost:3000';
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 const timeout = 10000;
 
 axios.defaults.baseURL = baseURL;
