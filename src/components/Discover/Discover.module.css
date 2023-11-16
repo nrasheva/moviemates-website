@@ -36,6 +36,7 @@
 }
 
 .discover-movies-content {
+  align-items: flex-start;
   display: flex;
   flex: 1;
   height: 100%;

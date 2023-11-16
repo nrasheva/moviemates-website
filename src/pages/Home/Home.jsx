@@ -13,8 +13,10 @@ export const HomePage = () => {
   return (
     <div className={styles.home}>
       <div className={styles['home-welcome']}>
-        <h2>Wander what movie to watch next?</h2>
-        <p>Find the best option with us and share your opinion</p>
+        <span>
+          <h2>Wander what movie to watch next?</h2>
+          <p>Find the best option with us and share your opinion</p>
+        </span>
         <Button text='Discover' type='filled' onClick={handleDiscoverClick} />
       </div>
     </div>
