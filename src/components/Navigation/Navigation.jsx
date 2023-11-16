@@ -47,7 +47,7 @@ export const Navigation = () => {
   };
 
   const handleLink = (url) => {
-    navigate(`/${url}`);
+    navigate(`/${url === 'home' ? '' : url}`);
 
     handleNavigation();
   };
