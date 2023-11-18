@@ -10,7 +10,7 @@ import { DiscoverPage } from './pages/Discover';
 import { HomePage } from './pages/Home/Home';
 import { LoginPage } from './pages/Login/Login';
 import { NotFoundPage } from './pages/NotFound/NotFound';
-import { RegisterPage } from './pages/Register';
+import { RegisterPage } from './pages/Register/Register';
 
 const router = createBrowserRouter([
   {

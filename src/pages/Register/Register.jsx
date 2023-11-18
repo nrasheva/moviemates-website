@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '../components/Button/Button';
-import { Input } from '../components/Input/Input';
-import { register } from '../services/authentication.service';
-import { validateCredentials } from '../tools';
+import { Button } from '../../components/Button/Button';
+import { Input } from '../../components/Input/Input';
+import { register } from '../../services/authentication.service';
+import { validateCredentials } from '../../tools';
 
 export const RegisterPage = () => {
   const [email, setEmail] = useState('');
