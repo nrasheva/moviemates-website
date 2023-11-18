@@ -86,6 +86,25 @@ form input:first-of-type {
   text-align: center;
 }
 
+.container {
+  justify-content: flex-start;
+  background-size: cover;
+  display: flex;
+  flex: 1;
+  padding: var(--vertical-padding);
+}
+
+.content {
+  align-items: flex-start;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font);
+  gap: 1.5rem;
+  justify-content: center;
+  max-width: 50%;
+}
+
 @media only screen and (min-width: 1200px) {
   .column:first-of-type {
     background-color: var(--orange-web);

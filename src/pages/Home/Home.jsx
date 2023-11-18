@@ -11,10 +11,10 @@ export const HomePage = () => {
   };
 
   return (
-    <div className={styles.home}>
-      <div className={styles['home-welcome']}>
+    <div className={`${styles.home} container`}>
+      <div className='content'>
         <span>
-          <h2>Wander what movie to watch next?</h2>
+          <h1>What to watch next?</h1>
           <p>Find the best option with us and share your opinion</p>
         </span>
         <Button text='Discover' type='filled' onClick={handleDiscoverClick} />
