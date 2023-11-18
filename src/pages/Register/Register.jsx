@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import styles from './Register.module.css';
 import { Button } from '../../components/Button/Button';
 import { Input } from '../../components/Input/Input';
 import { register } from '../../services/authentication.service';
@@ -38,7 +39,7 @@ export const RegisterPage = () => {
 
   return (
     <main className='auth'>
-      <div className='column' />
+      <div className={`${styles.register} column`} />
       <div className='column'>
         <form autoComplete='off' onSubmit={(e) => e.preventDefault()}>
           <h2 className='white'>Register</h2>
