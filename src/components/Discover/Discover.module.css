@@ -63,6 +63,11 @@
   opacity: 0.5;
 }
 
+.movie-more-info span {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .swiper {
   align-self: flex-end;
   display: flex;

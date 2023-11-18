@@ -1,4 +1,6 @@
 import 'swiper/css';
+import { faCalendarDays, faStar } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -108,8 +110,14 @@ export const Discover = () => {
                   ))}
               </div>
               <div className={styles['movie-more-info']}>
-                <p className='font-s white'>{`${activeMovie.vote_average}/10`}</p>
-                <p className='font-s white'>{formattedDate}</p>
+                <span>
+                  <FontAwesomeIcon icon={faStar} style={{ color: 'var(--hunyadi-yellow)' }} />
+                  <p className='font-s white'>{`${activeMovie.vote_average}/10`}</p>
+                </span>
+                <span>
+                  <FontAwesomeIcon icon={faCalendarDays} style={{ color: 'var(--hunyadi-yellow)' }} />
+                  <p className='font-s white'>{formattedDate}</p>
+                </span>
               </div>
               <Button text='View discussion' type='filled' onClick={handleViewDiscussion} />
             </div>
