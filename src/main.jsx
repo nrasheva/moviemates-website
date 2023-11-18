@@ -8,7 +8,7 @@ import App from './App';
 import { CommentsPage } from './pages/Comments';
 import { DiscoverPage } from './pages/Discover';
 import { HomePage } from './pages/Home/Home';
-import { LoginPage } from './pages/Login';
+import { LoginPage } from './pages/Login/Login';
 import { NotFoundPage } from './pages/NotFound/NotFound';
 import { RegisterPage } from './pages/Register';
 

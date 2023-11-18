@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '../components/Button/Button';
-import { Input } from '../components/Input/Input';
-import { setIsAuthenticated } from '../redux/reducers/authentication';
-import { login } from '../services/authentication.service';
-import { validateCredentials } from '../tools';
+import styles from './Login.module.css';
+import { Button } from '../../components/Button/Button';
+import { Input } from '../../components/Input/Input';
+import { setIsAuthenticated } from '../../redux/reducers/authentication';
+import { login } from '../../services/authentication.service';
+import { validateCredentials } from '../../tools';
 
 export const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -45,7 +46,7 @@ export const LoginPage = () => {
 
   return (
     <main className='auth'>
-      <div className='column' />
+      <div className={`${styles.login} column`} />
       <div className='column'>
         <form autoComplete='off' onSubmit={(e) => e.preventDefault()}>
           <h2 className='white'>Login</h2>
