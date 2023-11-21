@@ -74,7 +74,7 @@ export const Discover = () => {
   const handleViewDiscussion = () => {
     const movieId = activeMovie.id;
     try {
-      navigate(`/comments/${movieId}`);
+      navigate(`/details/${movieId}`);
     } catch (error) {
       console.log(error);
     }

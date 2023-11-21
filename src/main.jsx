@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App';
-import { CommentsPage } from './pages/Comments';
-import { DiscoverPage } from './pages/Discover';
+import { DetailsPage } from './pages/Details/Details';
+import { DiscoverPage } from './pages/Discover/Discover';
 import { HomePage } from './pages/Home/Home';
 import { LoginPage } from './pages/Login/Login';
 import { NotFoundPage } from './pages/NotFound/NotFound';
@@ -16,8 +16,8 @@ const router = createBrowserRouter([
   {
     children: [
       {
-        element: <CommentsPage />,
-        path: '/comments/:movieId',
+        element: <DetailsPage />,
+        path: '/details/:movieId',
       },
       {
         element: <DiscoverPage />,
