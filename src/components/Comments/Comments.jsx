@@ -15,7 +15,7 @@ export const Comments = ({ id }) => {
         console.log(error);
       }
     })();
-  }, []);
+  }, [id]);
 
   return (
     <div>

@@ -13,6 +13,8 @@
         "newlines-between": "always"
       }
     ],
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
     "sort-imports": [
       "error",
       {

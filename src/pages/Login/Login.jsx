@@ -26,7 +26,7 @@ export const LoginPage = () => {
     // If there is an API error, clear the error when the user starts correcting the credentials
     setError('');
     setWarning(issues);
-  }, [email, password, submitted]);
+  }, [email, password]);
 
   const handleLogin = async () => {
     try {
