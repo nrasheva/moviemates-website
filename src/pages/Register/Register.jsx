@@ -25,16 +25,18 @@ export const RegisterPage = () => {
   }, [email, password]);
 
   const handleRegister = async () => {
-    try {
-      await register(email, password);
-
-      navigate('/login');
-    } catch (error) {
-      console.log(error);
-      setError(error.response.data.message);
-    }
-
     setSubmitted(true);
+
+    if (!warning.length) {
+      try {
+        await register(email, password);
+
+        navigate('/login');
+      } catch (error) {
+        console.log(error);
+        setError(error.response.data.message);
+      }
+    }
   };
 
   return (

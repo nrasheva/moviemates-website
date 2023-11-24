@@ -7,6 +7,7 @@
 #root {
   display: flex;
   flex-direction: column;
+  min-height: 100svh;
 }
 
 .main {
@@ -14,10 +15,11 @@
 }
 
 .hero {
+  background-position: center;
   background-size: cover;
   display: flex;
   flex: 1;
-  min-height: 100vh;
+  min-height: 100svh;
   padding: var(--nav-height) var(--horizontal-padding) 0 var(--horizontal-padding);
 }
 
@@ -45,7 +47,18 @@
 
 @media only screen and(min-width: 1200px) {
   #root {
-    min-height: 100vh;
+    min-height: 100svh;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 0 calc(var(--horizontal-padding) / 2);
+  }
+
+  .hero-column:first-of-type {
+    min-height: 100svh;
   }
 }
 

@@ -1,4 +1,6 @@
 .genres {
+  display: flex;
+  flex-direction: column;
   margin-right: var(--nav-height);
   white-space: nowrap;
 }
@@ -10,4 +12,10 @@
 
 .genres li:hover {
   transform: scale(1.15);
+}
+
+@media only screen and (max-width: 768px) {
+  .genres {
+    display: none;
+  }
 }

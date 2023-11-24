@@ -84,6 +84,7 @@ nav {
     background-color: black;
     flex-direction: column;
     inset: var(--nav-height) 0 0 0;
+    min-height: 100svh;
     padding: var(--nav-height) calc(var(--horizontal-padding) / 2);
     position: absolute;
   }

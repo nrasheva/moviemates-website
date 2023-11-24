@@ -29,19 +29,22 @@ export const LoginPage = () => {
   }, [email, password]);
 
   const handleLogin = async () => {
-    try {
-      const { token } = await login(email, password);
-
-      localStorage.setItem('token', token);
-
-      dispatch(setIsAuthenticated(true));
-
-      navigate('/discover');
-    } catch (error) {
-      console.log(error);
-      setError(error.response.data.message);
-    }
     setSubmitted(true);
+
+    if (!warning.length) {
+      try {
+        const { token } = await login(email, password);
+
+        localStorage.setItem('token', token);
+
+        dispatch(setIsAuthenticated(true));
+
+        navigate('/discover');
+      } catch (error) {
+        console.log(error);
+        setError(error.response.data.message);
+      }
+    }
   };
 
   return (
