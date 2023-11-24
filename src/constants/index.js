@@ -1,3 +1,3 @@
 export const constants = {
-  protectedRoutes: ['details', 'profile'],
+  protectedRoutes: ['profile'],
 };

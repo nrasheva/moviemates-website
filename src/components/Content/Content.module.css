@@ -2,6 +2,8 @@
   flex-direction: column;
 }
 
-.content button {
+.button-container {
+  display: flex;
+  gap: 1rem;
   margin-top: 2rem;
 }

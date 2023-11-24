@@ -1,22 +1,23 @@
 button {
   background: none;
+  border-radius: 1rem;
   border: none;
   cursor: pointer;
   height: 3rem;
+  padding: 0 2rem;
   white-space: nowrap;
-}
-
-.empty {
-  color: var(--orange-web);
 }
 
 .filled {
   background-color: var(--orange-web);
-  border-radius: 1rem;
   color: black;
-  padding: 0 2rem;
 }
 
 .filled:hover {
   background-color: var(--hunyadi-yellow);
+}
+
+.outlined {
+  border: 1px solid var(--orange-web);
+  color: var(--orange-web);
 }

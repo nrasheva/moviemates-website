@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { Button } from '../../components/Button/Button';
 import { Content } from '../../components/Content/Content';
 import { getMovieById } from '../../services/movies.service';
 
 export const DetailsPage = () => {
   const [movie, setMovie] = useState({});
+
+  const isAuthenticated = useSelector((state) => state.authentication.isAuthenticated);
 
   const { movieId } = useParams();
 
@@ -21,13 +25,22 @@ export const DetailsPage = () => {
     })();
   }, [movieId]);
 
+  const Buttons = () => {
+    return (
+      <>
+        <Button text='Discussions' type='filled' onClick={() => {}} />
+        {isAuthenticated && <Button text='Add to watchlist' type='outlined' onClick={() => {}} />}
+      </>
+    );
+  };
+
   return (
     <main className='main'>
       <div
         className='container hero'
         style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})` }}>
         <div className='hero-column'>
-          <Content button='Discussions' heading={movie.title} navigate='' subHeading={movie.overview} />
+          <Content buttons={<Buttons />} heading={movie.title} subHeading={movie.overview} />
         </div>
         <div className='hero-column' />
       </div>
