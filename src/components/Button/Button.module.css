@@ -4,13 +4,13 @@ button {
   border: none;
   cursor: pointer;
   height: 3rem;
-  padding: 0 2rem;
   white-space: nowrap;
 }
 
 .filled {
   background-color: var(--orange-web);
   color: black;
+  padding: 0 2rem;
 }
 
 .filled:hover {
@@ -20,4 +20,11 @@ button {
 .outlined {
   border: 1px solid var(--orange-web);
   color: var(--orange-web);
+  padding: 0 2rem;
+}
+
+.square {
+  border: 1px solid var(--orange-web);
+  color: var(--orange-web);
+  width: 3rem;
 }

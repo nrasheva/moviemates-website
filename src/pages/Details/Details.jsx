@@ -47,7 +47,7 @@ export const DetailsPage = () => {
     return (
       <>
         <Button text='Discussions' type='filled' onClick={() => {}} />
-        {isAuthenticated && <Button text='Add to watchlist' type='outlined' onClick={() => {}} />}
+        {isAuthenticated && <Button text='' type='square' onClick={() => {}} />}
       </>
     );
   };
