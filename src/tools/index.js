@@ -6,6 +6,12 @@ export const decodeToken = () => {
   return token ? jwtDecode(token) : null;
 };
 
+export const formatDate = (date) => {
+  const options = { day: '2-digit', month: 'long', year: 'numeric' };
+
+  return new Date(date).toLocaleDateString('en-GB', options);
+};
+
 // Validates authentication credentials
 export const validateCredentials = (email, password) => {
   const validEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);

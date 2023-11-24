@@ -1,4 +1,3 @@
-import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -66,7 +65,7 @@ export const Navigation = () => {
           })}
           {isAuthenticated && (
             <span onClick={handleLogout}>
-              <FontAwesomeIcon icon={faArrowRightFromBracket} />
+              <FontAwesomeIcon icon='fa-solid fa-right-from-bracket' />
             </span>
           )}
         </div>

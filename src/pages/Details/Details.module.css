@@ -1,0 +1,12 @@
+.details {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.details span {
+  align-items: center;
+  color: rgb(165, 165, 165);
+  display: flex;
+  gap: 0.5rem;
+}
