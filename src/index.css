@@ -12,6 +12,7 @@
 
 .main {
   display: flex;
+  flex-direction: column;
 }
 
 .hero {
@@ -44,6 +45,16 @@
   flex: 1;
 }
 
+section {
+  background-color: rgb(20, 20, 25);
+  padding: var(--nav-height) var(--horizontal-padding);
+  z-index: 1;
+}
+
+.section-heading {
+  padding-bottom: var(--nav-height);
+}
+
 @media only screen and (min-width: 1200px) {
   .hero {
     padding: 0 var(--horizontal-padding);
@@ -59,11 +70,16 @@
   .hero-column:last-of-type {
     display: none;
   }
+
+  section {
+    padding: var(--nav-height) calc(var(--horizontal-padding) / 2);
+  }
 }
 
 /*-------------------------Variables-------------------------*/
 
 :root {
+  --border-color: rgb(80, 80, 80);
   --font: 'Poppins';
   --horizontal-padding: 10vw;
   --hunyadi-yellow: rgb(255, 185, 90);

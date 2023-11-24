@@ -7,6 +7,7 @@ import styles from './Details.module.css';
 import noise from '../../assets/noise.jpg';
 import { Button } from '../../components/Button/Button';
 import { Content } from '../../components/Content/Content';
+import { Discussions } from '../../components/Discussions/Discussions';
 import { getMovieById } from '../../services/movies.service';
 import { formatDate } from '../../tools';
 
@@ -75,6 +76,7 @@ export const DetailsPage = () => {
         </div>
         <div className='hero-column' />
       </div>
+      <Discussions movieId={movieId} />
     </main>
   );
 };

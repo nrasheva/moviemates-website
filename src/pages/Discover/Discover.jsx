@@ -39,7 +39,7 @@ export const DiscoverPage = () => {
     return (
       <>
         <Button text='Details' type='filled' onClick={() => navigate(`/details/${activeMovie.id}`)} />
-        <Button text='More movies' type='outlined' onClick={() => handleDiscoverMovies()} />
+        <Button text='Refresh list' type='outlined' onClick={() => handleDiscoverMovies()} />
       </>
     );
   };

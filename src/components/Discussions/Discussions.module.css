@@ -1,0 +1,12 @@
+.discussions {
+  align-items: center;
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  min-height: 50svh;
+  padding: var(--vertical-padding);
+  text-align: center;
+}

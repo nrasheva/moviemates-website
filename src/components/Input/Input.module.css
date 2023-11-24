@@ -1,7 +1,7 @@
 .input {
   background: none;
   border-radius: 0.5rem;
-  border: 1px solid rgb(80, 80, 80);
+  border: 1px solid var(--border-color);
   color: white;
   font: 400 0.95rem var(--font);
   height: 50px;
