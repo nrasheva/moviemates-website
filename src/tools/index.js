@@ -1,3 +1,11 @@
+import { jwtDecode } from 'jwt-decode';
+
+export const decodeToken = () => {
+  const token = localStorage.getItem('token');
+
+  return token ? jwtDecode(token) : null;
+};
+
 // Validates authentication credentials
 export const validateCredentials = (email, password) => {
   const validEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
@@ -16,4 +24,15 @@ export const validateCredentials = (email, password) => {
   }
 
   return '';
+};
+
+export const validateToken = () => {
+  const decodedToken = decodeToken();
+
+  if (decodedToken) {
+    const now = Math.floor(new Date().getTime() / 1000.0);
+    return decodedToken.exp > now;
+  } else {
+    return false;
+  }
 };
