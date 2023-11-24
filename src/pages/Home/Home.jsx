@@ -1,24 +1,20 @@
-import { useNavigate } from 'react-router-dom';
-
 import styles from './Home.module.css';
-import { Button } from '../../components/Button/Button';
+import { Content } from '../../components/Content/Content';
 
 export const HomePage = () => {
-  const navigate = useNavigate();
-
-  const handleDiscoverClick = async () => {
-    navigate('/discover');
-  };
-
   return (
-    <div className={`${styles.home} container`}>
-      <div className='content'>
-        <span>
-          <h1>What to watch next?</h1>
-          <p>Find the best option with us and share your opinion</p>
-        </span>
-        <Button text='Discover' type='filled' onClick={handleDiscoverClick} />
+    <main className='main'>
+      <div className={`container hero ${styles.home}`}>
+        <div className='hero-column'>
+          <Content
+            button='Discover'
+            heading='What to watch next?'
+            navigate='/discover'
+            subHeading='Find the best option with us and share your opinion'
+          />
+        </div>
+        <div className='hero-column' />
       </div>
-    </div>
+    </main>
   );
 };

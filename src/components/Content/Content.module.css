@@ -1,0 +1,7 @@
+.content {
+  flex-direction: column;
+}
+
+.content button {
+  margin-top: 2rem;
+}

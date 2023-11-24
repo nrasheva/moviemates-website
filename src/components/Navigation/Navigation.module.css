@@ -16,11 +16,6 @@ nav {
   cursor: pointer;
   display: flex;
   font: 700 1.5rem var(--font);
-  gap: 1rem;
-}
-
-.nav-logo img {
-  height: 40px;
 }
 
 .nav-content {

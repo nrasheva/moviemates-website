@@ -1,8 +1,3 @@
-.error {
-  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.25) 100%),
-    url('../../../images/notFound.jpg');
-}
-
-.error span p {
-  font-size: 1.5rem;
+.not-found {
+  background-image: url('../../../images/notFound.jpg');
 }

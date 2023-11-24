@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Navigation.module.css';
 import { setIsAuthenticated } from '../../redux/reducers/authentication';
 
-const MENU_ITEMS = { protected: ['profile'], public: ['home', 'login', 'register'] };
+const MENU_ITEMS = { protected: ['home', 'profile'], public: ['home', 'login', 'register'] };
 
 export const Navigation = () => {
   const [height, setHeight] = useState(0);
@@ -63,18 +63,18 @@ export const Navigation = () => {
   return (
     <nav>
       <span className={styles['nav-logo']} onClick={() => navigate('/')}>
-        Moviemates
+        moviemates
       </span>
       <div className={styles['nav-content']}>
         <div className={`${styles['nav-items']} ${visible ? '' : styles.hidden}`} style={{ minHeight: height }}>
           {MENU_ITEMS[isAuthenticated ? 'protected' : 'public'].map((menuItem) => {
             return (
               <span key={menuItem} onClick={() => handleLink(menuItem)}>
-                {menuItem}
+                {menuItem.charAt(0).toUpperCase() + menuItem.slice(1)}
               </span>
             );
           })}
-          {isAuthenticated && <span onClick={handleLogout}>logout</span>}
+          {isAuthenticated && <span onClick={handleLogout}>Logout</span>}
         </div>
         <div className={`${styles['hamburger-menu']} ${visible ? styles.visible : ''}`} onClick={handleNavigation}>
           <div className={styles.bar} />

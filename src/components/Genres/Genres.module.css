@@ -1,0 +1,13 @@
+.genres {
+  margin-right: var(--nav-height);
+  white-space: nowrap;
+}
+
+.genres li {
+  cursor: pointer;
+  transition: transform 0.35s;
+}
+
+.genres li:hover {
+  transform: scale(1.15);
+}
