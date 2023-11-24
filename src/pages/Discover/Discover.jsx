@@ -43,7 +43,7 @@ export const DiscoverPage = () => {
   return (
     <main className='main'>
       <div
-        className='container hero'
+        className='hero'
         style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${activeMovie.backdrop_path})` }}>
         <div className='hero-column'>
           <Genres setActiveGenre={setActiveGenre} />

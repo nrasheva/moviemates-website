@@ -20,14 +20,13 @@
   display: flex;
   flex: 1;
   min-height: 100svh;
-  padding: var(--nav-height) var(--horizontal-padding) 0 var(--horizontal-padding);
 }
 
 .hero::after {
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.25) 100%);
   content: '';
   inset: 0;
-  position: absolute;
+  position: fixed;
 }
 
 .hero-column {
@@ -45,20 +44,20 @@
   flex: 1;
 }
 
-@media only screen and(min-width: 1200px) {
-  #root {
-    min-height: 100svh;
+@media only screen and (min-width: 1200px) {
+  .hero {
+    padding: 0 var(--horizontal-padding);
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
+  .hero {
     flex-direction: column;
     padding: 0 calc(var(--horizontal-padding) / 2);
   }
 
-  .hero-column:first-of-type {
-    min-height: 100svh;
+  .hero-column:last-of-type {
+    display: none;
   }
 }
 

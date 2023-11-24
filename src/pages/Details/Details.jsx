@@ -37,7 +37,7 @@ export const DetailsPage = () => {
   return (
     <main className='main'>
       <div
-        className='container hero'
+        className='hero'
         style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})` }}>
         <div className='hero-column'>
           <Content buttons={<Buttons />} heading={movie.title} subHeading={movie.overview} />

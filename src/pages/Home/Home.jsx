@@ -13,7 +13,7 @@ export const HomePage = () => {
 
   return (
     <main className='main'>
-      <div className={`container hero ${styles.home}`}>
+      <div className={`hero ${styles.home}`}>
         <div className='hero-column'>
           <Content
             buttons={<Buttons />}
