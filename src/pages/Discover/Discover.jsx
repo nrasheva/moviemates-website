@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import styles from './Discover.module.css';
 import { Button } from '../../components/Button/Button';
 import { Content } from '../../components/Content/Content';
 import { Genres } from '../../components/Genres/Genres';
@@ -16,29 +17,35 @@ export const DiscoverPage = () => {
 
   const navigate = useNavigate();
 
+  const handleDiscoverMovies = useCallback(async () => {
+    try {
+      const { movies } = await discoverMovies(activeGenre);
+
+      dispatch(setMovies(movies));
+      setActiveMovie(movies[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [activeGenre, dispatch, setActiveMovie]);
+
   useEffect(() => {
     if (activeGenre !== -1) {
-      (async () => {
-        try {
-          const { movies } = await discoverMovies(activeGenre);
-
-          dispatch(setMovies(movies));
-          setActiveMovie(movies[0]);
-        } catch (error) {
-          console.log(error);
-        }
-      })();
+      handleDiscoverMovies();
     }
-  }, [activeGenre, dispatch]);
+  }, [activeGenre, handleDiscoverMovies]);
 
   const Buttons = () => {
     return (
       <>
         <Button text='Details' type='filled' onClick={() => navigate(`/details/${activeMovie.id}`)} />
-        <Button text='More movies' type='outlined' onClick={() => navigate(`/details/${activeMovie.id}`)} />
+        <Button text='More movies' type='outlined' onClick={() => handleDiscoverMovies()} />
       </>
     );
   };
+
+  const handleActiveGenre = useCallback((genre) => {
+    setActiveGenre(genre);
+  }, []);
 
   return (
     <main className='main'>
@@ -46,12 +53,14 @@ export const DiscoverPage = () => {
         className='hero'
         style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${activeMovie.backdrop_path})` }}>
         <div className='hero-column'>
-          <Genres setActiveGenre={setActiveGenre} />
-          <Content
-            buttons={<Buttons />}
-            heading={activeMovie.title}
-            subHeading='Find the best option with us and share your opinion'
-          />
+          <Genres handleActiveGenre={handleActiveGenre} />
+          <div className={styles['scroll-container']}>
+            <Content
+              buttons={<Buttons />}
+              heading={activeMovie.title}
+              subHeading='Find the best option with us and share your opinion'
+            />
+          </div>
         </div>
         <div className='hero-column' />
       </div>

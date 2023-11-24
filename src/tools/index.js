@@ -26,6 +26,16 @@ export const validateCredentials = (email, password) => {
   return '';
 };
 
+export const validateJSON = (string) => {
+  try {
+    JSON.parse(string);
+  } catch {
+    return false;
+  }
+
+  return JSON.parse(string);
+};
+
 export const validateToken = () => {
   const decodedToken = decodeToken();
 

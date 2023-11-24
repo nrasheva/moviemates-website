@@ -5,7 +5,7 @@ import styles from './Genres.module.css';
 import { setGenres } from '../../redux/reducers/genres';
 import { getGenres } from '../../services/genres.service';
 
-export const Genres = (props) => {
+export const Genres = ({ handleActiveGenre }) => {
   const genres = useSelector((state) => state.genres.genres);
 
   const dispatch = useDispatch();
@@ -16,17 +16,17 @@ export const Genres = (props) => {
         const { genres } = await getGenres();
 
         dispatch(setGenres(genres));
-        props.setActiveGenre(genres[0].id);
+        handleActiveGenre(genres[0].id);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, [dispatch, props]);
+  }, [dispatch, handleActiveGenre]);
 
   return (
-    <ul onClick={() => props.setActiveGenre(genres.id)} className={styles.genres}>
+    <ul className={styles.genres}>
       {genres.map((genre) => (
-        <li className='font-m white' key={genre.id}>
+        <li className='font-m white' key={genre.id} onClick={() => handleActiveGenre(genre.id)}>
           {genre.name}
         </li>
       ))}
