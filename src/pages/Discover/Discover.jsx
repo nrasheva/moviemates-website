@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './Discover.module.css';
+import noise from '../../assets/noise.jpg';
 import { Button } from '../../components/Button/Button';
 import { Content } from '../../components/Content/Content';
 import { Genres } from '../../components/Genres/Genres';
@@ -51,7 +52,11 @@ export const DiscoverPage = () => {
     <main className='main'>
       <div
         className='hero'
-        style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${activeMovie.backdrop_path})` }}>
+        style={{
+          backgroundImage: `url(${
+            activeMovie.backdrop_path ? `https://image.tmdb.org/t/p/original/${activeMovie.backdrop_path}` : noise
+          })`,
+        }}>
         <div className='hero-column'>
           <Genres handleActiveGenre={handleActiveGenre} />
           <div className={styles['scroll-container']}>

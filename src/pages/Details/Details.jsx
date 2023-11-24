@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import noise from '../../assets/noise.jpg';
 import { Button } from '../../components/Button/Button';
 import { Content } from '../../components/Content/Content';
 import { getMovieById } from '../../services/movies.service';
@@ -38,7 +39,11 @@ export const DetailsPage = () => {
     <main className='main'>
       <div
         className='hero'
-        style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})` }}>
+        style={{
+          backgroundImage: `url(${
+            movie.backdrop_path ? `https://image.tmdb.org/t/p/original/${movie.backdrop_path}` : noise
+          })`,
+        }}>
         <div className='hero-column'>
           <Content buttons={<Buttons />} heading={movie.title} subHeading={movie.overview} />
         </div>
