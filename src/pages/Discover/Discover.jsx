@@ -60,11 +60,7 @@ export const DiscoverPage = () => {
         <div className='hero-column'>
           <Genres handleActiveGenre={handleActiveGenre} />
           <div className={styles['scroll-container']}>
-            <Content
-              buttons={<Buttons />}
-              heading={activeMovie.title}
-              subHeading='Find the best option with us and share your opinion'
-            />
+            <Content buttons={<Buttons />} heading={activeMovie.title} subHeading={activeMovie.overview} />
           </div>
         </div>
         <div className='hero-column' />

@@ -26,5 +26,6 @@ button {
 .square {
   border: 1px solid var(--orange-web);
   color: var(--orange-web);
+  font-size: 1rem;
   width: 3rem;
 }

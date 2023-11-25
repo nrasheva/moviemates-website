@@ -32,7 +32,7 @@
 
 .hero-column {
   align-items: center;
-  border: 1px solid var(--orange-web);
+  /* border: 1px solid var(--orange-web); */
   display: flex;
   z-index: 1;
 }
@@ -64,7 +64,15 @@ section {
 @media only screen and (max-width: 768px) {
   .hero {
     flex-direction: column;
-    padding: 0 calc(var(--horizontal-padding) / 2);
+    padding: var(--nav-height) calc(var(--horizontal-padding) / 2);
+  }
+
+  .hero::after {
+    background: linear-gradient(0, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.25) 100%);
+  }
+
+  .hero-column {
+    align-items: flex-end;
   }
 
   .hero-column:last-of-type {

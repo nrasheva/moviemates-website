@@ -18,6 +18,14 @@ h2 {
   font: 400 0.85rem var(--font);
 }
 
+.ellipsis {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .black {
   color: black;
 }
