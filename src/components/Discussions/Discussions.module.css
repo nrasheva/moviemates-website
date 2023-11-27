@@ -7,6 +7,5 @@
   gap: 2rem;
   justify-content: center;
   min-height: 50svh;
-  padding: var(--vertical-padding);
   text-align: center;
 }

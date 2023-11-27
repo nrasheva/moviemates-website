@@ -1,0 +1,24 @@
+.form {
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+textarea {
+  background: none;
+  border: none;
+  color: white;
+  flex: 1;
+  font: 400 0.95rem var(--font);
+  padding: 1rem;
+  resize: none;
+}
+
+.button-container {
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  padding: 1rem 1rem 1rem 0;
+}

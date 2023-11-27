@@ -5,17 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Discussions.module.css';
 import { getComments } from '../../services/comments.service';
 import { Button } from '../Button/Button';
+import { CreateComment } from '../CreateComment/CreateComment';
 
 export const Discussions = (props) => {
   const [comments, setComments] = useState([]);
   const [fetched, setFetched] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const isAuthenticated = useSelector((state) => state.authentication.isAuthenticated);
 
   const navigate = useNavigate();
 
-  const handleComments = useCallback(() => {
+  const handleGetComments = useCallback(() => {
     if (isAuthenticated) {
       setLoading(true);
 
@@ -35,8 +37,8 @@ export const Discussions = (props) => {
   }, [isAuthenticated, props.movieId]);
 
   useEffect(() => {
-    handleComments();
-  }, [handleComments]);
+    handleGetComments();
+  }, [handleGetComments]);
 
   return (
     <section>
@@ -48,7 +50,7 @@ export const Discussions = (props) => {
           <div className={styles.comments}>
             {comments.map((comment) => {
               return (
-                <p className='font-m white' key={comment.id}>
+                <p className='font-m white' key={comment._id}>
                   {comment.content}
                 </p>
               );
@@ -58,14 +60,20 @@ export const Discussions = (props) => {
           <>
             {loading ? (
               <p className='font-m white'>Loading</p>
+            ) : visible ? (
+              <CreateComment
+                handleGetComments={handleGetComments}
+                movieId={props.movieId}
+                onCancel={() => setVisible(!visible)}
+              />
             ) : fetched ? (
               <>
                 <p className='font-m white'>There are no discussions for this title</p>
-                <Button onClick={() => {}} text='Start discussion' type='outlined' />
+                <Button onClick={() => setVisible(true)} text='Start discussion' type='outlined' />
               </>
             ) : (
               <>
-                <p className='font-m white'>Only logged in users can view and discuss</p>
+                <p className='font-m white'>Only logged-in users can view and discuss</p>
                 <Button onClick={() => navigate('/login')} text='Login' type='outlined' />
               </>
             )}
