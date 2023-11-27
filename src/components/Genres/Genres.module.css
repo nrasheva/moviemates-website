@@ -1,12 +1,17 @@
 .genres {
   display: flex;
   flex-direction: column;
+  list-style-position: inside;
   margin-right: var(--nav-height);
-  white-space: nowrap;
+  max-height: 100svh;
+  min-width: fit-content;
+  overflow: hidden;
+  padding-top: var(--nav-height);
 }
 
 .genres li {
   cursor: pointer;
+  margin: 1rem 0;
   transition: transform 0.35s;
 }
 
