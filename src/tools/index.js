@@ -1,5 +1,9 @@
 import { jwtDecode } from 'jwt-decode';
 
+import { setWatchlist } from '../redux/reducers/watchlist';
+import { store } from '../redux/store';
+import { getWatchlist } from '../services/watchlist.service';
+
 export const decodeToken = () => {
   const token = localStorage.getItem('token');
 
@@ -10,6 +14,16 @@ export const formatDate = (date) => {
   const options = { day: '2-digit', month: 'long', year: 'numeric' };
 
   return new Date(date).toLocaleDateString('en-GB', options);
+};
+
+export const handleWatchlist = async () => {
+  try {
+    const { watchlist } = await getWatchlist();
+
+    store.dispatch(setWatchlist(watchlist));
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // Validates authentication credentials

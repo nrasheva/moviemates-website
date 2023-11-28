@@ -28,8 +28,8 @@ export const CreateComment = (props) => {
       }}>
       <textarea onChange={(e) => setContent(e.target.value)} placeholder='Enter comment' value={content} />
       <span className={styles['button-container']}>
-        <Button text='Submit' type='filled' onClick={handleCreateComment} />
-        <Button text='Cancel' type='outlined' onClick={props.onCancel} />
+        <Button icon='' onClick={handleCreateComment} text='Submit' type='filled' />
+        <Button icon='' onClick={props.onCancel} text='Cancel' type='outlined' />
       </span>
     </form>
   );

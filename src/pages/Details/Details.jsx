@@ -8,20 +8,24 @@ import noise from '../../assets/noise.jpg';
 import { Button } from '../../components/Button/Button';
 import { Content } from '../../components/Content/Content';
 import { Discussions } from '../../components/Discussions/Discussions';
-import { getMovieById } from '../../services/movies.service';
-import { formatDate } from '../../tools';
+import { getMovie } from '../../services/movies.service';
+import { addMovie, deleteMovie } from '../../services/watchlist.service';
+import { formatDate, handleWatchlist } from '../../tools';
 
 export const DetailsPage = () => {
   const [movie, setMovie] = useState({});
 
   const isAuthenticated = useSelector((state) => state.authentication.isAuthenticated);
+  const watchlist = useSelector((state) => state.watchlist.watchlist);
 
   const { movieId } = useParams();
 
   useEffect(() => {
     (async () => {
       try {
-        const { movie } = await getMovieById(movieId);
+        await handleWatchlist();
+
+        const { movie } = await getMovie(movieId);
 
         setMovie(movie);
       } catch (error) {
@@ -44,11 +48,31 @@ export const DetailsPage = () => {
     return fields;
   }, [movie.release_date, movie.runtime, movie.vote_average]);
 
+  const favourite = useMemo(() => {
+    return !!watchlist.find((movie) => movie === Number(movieId));
+  }, [movieId, watchlist]);
+
+  const toggleWatchlist = async () => {
+    try {
+      if (favourite) {
+        await deleteMovie(movieId);
+      } else {
+        await addMovie(movieId);
+      }
+
+      await handleWatchlist();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const Buttons = () => {
     return (
       <>
-        <Button text='Discussions' type='filled' onClick={() => {}} />
-        {isAuthenticated && <Button text='' type='square' onClick={() => {}} />}
+        <Button icon='' onClick={() => {}} text='Discussions' type='filled' />
+        {isAuthenticated && (
+          <Button icon={favourite ? 'fas fa-heart' : 'far fa-heart'} onClick={toggleWatchlist} text='' type='square' />
+        )}
       </>
     );
   };
