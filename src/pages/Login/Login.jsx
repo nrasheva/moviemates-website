@@ -67,10 +67,10 @@ export const LoginPage = () => {
             type='password'
             value={password}
           />
-          <Button onClick={handleLogin} text='Login' type='filled' />
+          <Button icon='' onClick={handleLogin} text='Login' type='filled' />
           <div className='auth-actions'>
             <p className='font-s white'>
-              Do not have an account?{' '}
+              Do not have an account?
               <span className='link semi-bold' onClick={() => navigate('/register')}>
                 Register
               </span>

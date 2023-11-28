@@ -59,10 +59,10 @@ export const RegisterPage = () => {
             type='password'
             value={password}
           />
-          <Button onClick={handleRegister} text='Register' type='filled' />
+          <Button icon='' onClick={handleRegister} text='Register' type='filled' />
           <div className='auth-actions'>
             <p className='font-s white'>
-              Already have an account?{' '}
+              Already have an account?
               <span className='link semi-bold' onClick={() => navigate('/login')}>
                 Login
               </span>

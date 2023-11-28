@@ -69,12 +69,12 @@ export const Discussions = (props) => {
             ) : fetched ? (
               <>
                 <p className='font-m white'>There are no discussions for this title</p>
-                <Button onClick={() => setVisible(true)} text='Start discussion' type='outlined' />
+                <Button icon='' onClick={() => setVisible(true)} text='Start discussion' type='outlined' />
               </>
             ) : (
               <>
                 <p className='font-m white'>Only logged-in users can view and discuss</p>
-                <Button onClick={() => navigate('/login')} text='Login' type='outlined' />
+                <Button icon='' onClick={() => navigate('/login')} text='Login' type='outlined' />
               </>
             )}
           </>

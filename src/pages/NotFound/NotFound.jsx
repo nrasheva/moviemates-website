@@ -8,7 +8,7 @@ export const NotFoundPage = () => {
   const navigate = useNavigate();
 
   const Buttons = () => {
-    return <Button text='Discover' type='filled' onClick={() => navigate('discover')} />;
+    return <Button icon='' onClick={() => navigate('discover')} text='Discover' type='filled' />;
   };
 
   return (

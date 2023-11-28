@@ -30,7 +30,7 @@ export const discoverMovies = async (genre) => {
   return { movies: data.movies };
 };
 
-export const getMovieById = async (id) => {
+export const getMovie = async (id) => {
   const { data } = await axios.get(`/getMovie?id=${id}`);
   return { movie: data };
 };
