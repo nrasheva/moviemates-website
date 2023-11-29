@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import styles from './Navigation.module.css';
 import { setIsAuthenticated } from '../../redux/reducers/authentication';
@@ -15,6 +15,7 @@ export const Navigation = () => {
 
   const dispatch = useDispatch();
 
+  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,9 +37,11 @@ export const Navigation = () => {
   };
 
   const handleLink = (url) => {
-    navigate(`/${url === 'home' ? '' : url}`);
+    if (`/${url}` !== location.pathname) {
+      navigate(`/${url === 'home' ? '' : url}`);
 
-    handleNavigation();
+      handleNavigation();
+    }
   };
 
   const handleLogout = () => {

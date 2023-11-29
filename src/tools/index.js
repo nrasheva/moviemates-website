@@ -1,5 +1,6 @@
 import { jwtDecode } from 'jwt-decode';
 
+import { setLoading } from '../redux/reducers/shared';
 import { setWatchlist } from '../redux/reducers/watchlist';
 import { store } from '../redux/store';
 import { getWatchlist } from '../services/watchlist.service';
@@ -20,6 +21,7 @@ export const handleWatchlist = async () => {
   try {
     const { watchlist } = await getWatchlist();
 
+    store.dispatch(setLoading(false));
     store.dispatch(setWatchlist(watchlist));
   } catch (error) {
     console.log(error);
