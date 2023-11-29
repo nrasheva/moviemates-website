@@ -8,6 +8,7 @@ import { Button } from '../../components/Button/Button';
 import { Content } from '../../components/Content/Content';
 import { Genres } from '../../components/Genres/Genres';
 import { setMovies } from '../../redux/reducers/movies';
+import { setLoading } from '../../redux/reducers/shared';
 import { discoverMovies } from '../../services/movies.service';
 
 export const DiscoverPage = () => {
@@ -19,10 +20,14 @@ export const DiscoverPage = () => {
   const navigate = useNavigate();
 
   const handleDiscoverMovies = useCallback(async () => {
+    dispatch(setLoading(true));
+
     try {
       const { movies } = await discoverMovies(activeGenre);
 
+      dispatch(setLoading(false));
       dispatch(setMovies(movies));
+
       setActiveMovie(movies[0]);
     } catch (error) {
       console.log(error);

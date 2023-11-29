@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { authenticationReducer } from './reducers/authentication';
 import { genresReducer } from './reducers/genres';
 import { moviesReducer } from './reducers/movies';
+import { sharedReducer } from './reducers/shared';
 import { watchlistReducer } from './reducers/watchlist';
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     authentication: authenticationReducer,
     genres: genresReducer,
     movies: moviesReducer,
+    shared: sharedReducer,
     watchlist: watchlistReducer,
   },
 });

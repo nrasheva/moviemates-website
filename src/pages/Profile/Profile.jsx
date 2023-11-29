@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Profile.module.css';
 import { Content } from '../../components/Content/Content';
+import { setLoading } from '../../redux/reducers/shared';
 import { setMovies } from '../../redux/reducers/watchlist';
 import { getMovie } from '../../services/movies.service';
 import { handleWatchlist } from '../../tools';
@@ -20,7 +21,7 @@ export const ProfilePage = () => {
         console.log(error);
       }
     })();
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     (async () => {
@@ -29,6 +30,8 @@ export const ProfilePage = () => {
         const noMovies = watchlist.filter((id) => !movies.some((movie) => movie.id === id));
 
         if (noMovies.length) {
+          dispatch(setLoading(true));
+
           const updatedMovies = [...movies];
 
           for (let i = 0; i < noMovies.length; i++) {
@@ -37,6 +40,7 @@ export const ProfilePage = () => {
             updatedMovies.push(movie);
           }
 
+          dispatch(setLoading(false));
           dispatch(setMovies(updatedMovies));
         }
       } catch (error) {

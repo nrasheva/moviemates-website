@@ -17,6 +17,7 @@ import { NotFoundPage } from './pages/NotFound/NotFound';
 import { ProfilePage } from './pages/Profile/Profile';
 import { RegisterPage } from './pages/Register/Register';
 import { setIsAuthenticated } from './redux/reducers/authentication';
+import { setLoading } from './redux/reducers/shared';
 import { store } from './redux/store';
 import { validateToken } from './tools';
 
@@ -24,9 +25,15 @@ const guard = (path) => {
   const validToken = validateToken();
 
   store.dispatch(setIsAuthenticated(validToken));
+  store.dispatch(setLoading(true));
 
   if (constants.protectedRoutes.includes(path)) {
     return validToken ? null : redirect('/login');
+  }
+
+  // Hide the loading overlay on routes that do not make requests when mounted
+  if (path === 'home' || path === 'login' || path === 'not-found' || path === 'register') {
+    store.dispatch(setLoading(false));
   }
 
   if (validToken && (path === 'login' || path === 'register')) {
@@ -61,7 +68,7 @@ export const router = createBrowserRouter([
       },
       {
         element: <NotFoundPage />,
-        loader: () => guard(''),
+        loader: () => guard('not-found'),
         path: '*',
       },
       {

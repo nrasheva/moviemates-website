@@ -16,6 +16,7 @@ export const Genres = ({ handleActiveGenre }) => {
         const { genres } = await getGenres();
 
         dispatch(setGenres(genres));
+
         handleActiveGenre(genres[0].id);
       } catch (error) {
         console.log(error);

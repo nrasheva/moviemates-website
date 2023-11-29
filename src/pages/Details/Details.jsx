@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import styles from './Details.module.css';
@@ -8,6 +8,7 @@ import noise from '../../assets/noise.jpg';
 import { Button } from '../../components/Button/Button';
 import { Content } from '../../components/Content/Content';
 import { Discussions } from '../../components/Discussions/Discussions';
+import { setLoading } from '../../redux/reducers/shared';
 import { getMovie } from '../../services/movies.service';
 import { addMovie, deleteMovie } from '../../services/watchlist.service';
 import { formatDate, handleWatchlist } from '../../tools';
@@ -17,6 +18,8 @@ export const DetailsPage = () => {
 
   const isAuthenticated = useSelector((state) => state.authentication.isAuthenticated);
   const watchlist = useSelector((state) => state.watchlist.watchlist);
+
+  const dispatch = useDispatch();
 
   const { movieId } = useParams();
 
@@ -37,12 +40,14 @@ export const DetailsPage = () => {
 
         const { movie } = await getMovie(movieId);
 
+        dispatch(setLoading(false));
+
         setMovie(movie);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, [isAuthenticated, movieId]);
+  }, [dispatch, isAuthenticated, movieId]);
 
   const details = useMemo(() => {
     let fields = [];
