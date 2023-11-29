@@ -14,6 +14,7 @@ import { DiscoverPage } from './pages/Discover/Discover';
 import { HomePage } from './pages/Home/Home';
 import { LoginPage } from './pages/Login/Login';
 import { NotFoundPage } from './pages/NotFound/NotFound';
+import { ProfilePage } from './pages/Profile/Profile';
 import { RegisterPage } from './pages/Register/Register';
 import { setIsAuthenticated } from './redux/reducers/authentication';
 import { store } from './redux/store';
@@ -62,6 +63,11 @@ export const router = createBrowserRouter([
         element: <NotFoundPage />,
         loader: () => guard(''),
         path: '*',
+      },
+      {
+        element: <ProfilePage />,
+        loader: () => guard('profile'),
+        path: '/profile',
       },
       {
         element: <RegisterPage />,
