@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ import { getComments } from '../../services/comments.service';
 import { Button } from '../Button/Button';
 import { CreateComment } from '../CreateComment/CreateComment';
 
-export const Discussions = (props) => {
+export const Discussions = forwardRef((props, ref) => {
   const [comments, setComments] = useState([]);
   const [fetched, setFetched] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -41,7 +41,7 @@ export const Discussions = (props) => {
   }, [handleGetComments]);
 
   return (
-    <section>
+    <section ref={ref}>
       <div className='section-heading'>
         <h2 className='white'>Discussions</h2>
       </div>
@@ -82,4 +82,4 @@ export const Discussions = (props) => {
       </div>
     </section>
   );
-};
+});

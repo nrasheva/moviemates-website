@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -20,7 +20,15 @@ export const DetailsPage = () => {
 
   const { movieId } = useParams();
 
+  const discussionsRef = useRef(null);
+
   useEffect(() => {
+    document.documentElement.style.scrollBehavior = 'auto';
+
+    window.scrollTo(0, 0);
+
+    document.documentElement.style.scrollBehavior = 'smooth';
+
     (async () => {
       try {
         if (isAuthenticated) {
@@ -71,7 +79,7 @@ export const DetailsPage = () => {
   const Buttons = () => {
     return (
       <>
-        <Button icon='' onClick={() => {}} text='Discussions' type='filled' />
+        <Button icon='' onClick={() => discussionsRef.current.scrollIntoView()} text='Discussions' type='filled' />
         {isAuthenticated && (
           <Button icon={favourite ? 'fas fa-heart' : 'far fa-heart'} onClick={toggleWatchlist} text='' type='square' />
         )}
@@ -102,7 +110,7 @@ export const DetailsPage = () => {
         </div>
         <div className='hero-column' />
       </div>
-      <Discussions movieId={movieId} />
+      <Discussions movieId={movieId} ref={discussionsRef} />
     </main>
   );
 };
