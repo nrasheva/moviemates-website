@@ -23,7 +23,9 @@ export const DetailsPage = () => {
   useEffect(() => {
     (async () => {
       try {
-        await handleWatchlist();
+        if (isAuthenticated) {
+          await handleWatchlist();
+        }
 
         const { movie } = await getMovie(movieId);
 
@@ -32,7 +34,7 @@ export const DetailsPage = () => {
         console.log(error);
       }
     })();
-  }, [movieId]);
+  }, [isAuthenticated, movieId]);
 
   const details = useMemo(() => {
     let fields = [];

@@ -9,4 +9,5 @@
   color: rgb(165, 165, 165);
   display: flex;
   gap: 0.5rem;
+  white-space: nowrap;
 }
