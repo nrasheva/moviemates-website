@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './Genres.module.css';
 import { setGenres } from '../../redux/reducers/genres';
 import { getGenres } from '../../services/genres.service';
+import { handleError } from '../../tools';
 
 export const Genres = ({ handleActiveGenre }) => {
   const genres = useSelector((state) => state.genres.genres);
@@ -19,7 +20,7 @@ export const Genres = ({ handleActiveGenre }) => {
 
         handleActiveGenre(genres[0].id);
       } catch (error) {
-        console.log(error);
+        handleError(error);
       }
     })();
   }, [dispatch, handleActiveGenre]);

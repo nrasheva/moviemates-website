@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import styles from './CreateComment.module.css';
 import { createComment } from '../../services/comments.service';
+import { handleError } from '../../tools';
 import { Button } from '../Button/Button';
 
 export const CreateComment = (props) => {
@@ -15,7 +16,7 @@ export const CreateComment = (props) => {
 
       setContent('');
     } catch (error) {
-      console.log(error);
+      handleError(error);
     }
   };
 

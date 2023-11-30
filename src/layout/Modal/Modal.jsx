@@ -22,8 +22,10 @@ export const Modal = () => {
 
   return (
     <dialog className={styles.dialog} ref={modalRef}>
-      <h3>Warning</h3>
-      <p className='font-m'>{text}</p>
+      <h2>Warning</h2>
+      <div className={styles.content}>
+        <p className='font-m'>{text}</p>
+      </div>
       <Button
         icon=''
         onClick={() =>
@@ -35,7 +37,7 @@ export const Modal = () => {
           )
         }
         text='Accept'
-        type='outlined'
+        type='filled'
       />
     </dialog>
   );

@@ -11,7 +11,7 @@ import { Discussions } from '../../components/Discussions/Discussions';
 import { setLoading } from '../../redux/reducers/shared';
 import { getMovie } from '../../services/movies.service';
 import { addMovie, deleteMovie } from '../../services/watchlist.service';
-import { formatDate, handleWatchlist } from '../../tools';
+import { formatDate, handleError, handleWatchlist } from '../../tools';
 
 export const DetailsPage = () => {
   const [movie, setMovie] = useState({});
@@ -44,7 +44,7 @@ export const DetailsPage = () => {
 
         setMovie(movie);
       } catch (error) {
-        console.log(error);
+        handleError(error);
       }
     })();
   }, [dispatch, isAuthenticated, movieId]);
@@ -77,7 +77,7 @@ export const DetailsPage = () => {
 
       await handleWatchlist();
     } catch (error) {
-      console.log(error);
+      handleError(error);
     }
   };
 

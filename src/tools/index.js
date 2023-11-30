@@ -1,6 +1,6 @@
 import { jwtDecode } from 'jwt-decode';
 
-import { setLoading } from '../redux/reducers/shared';
+import { setLoading, setModal } from '../redux/reducers/shared';
 import { setWatchlist } from '../redux/reducers/watchlist';
 import { store } from '../redux/store';
 import { getWatchlist } from '../services/watchlist.service';
@@ -15,6 +15,32 @@ export const formatDate = (date) => {
   const options = { day: '2-digit', month: 'long', year: 'numeric' };
 
   return new Date(date).toLocaleDateString('en-GB', options);
+};
+
+export const handleError = (error) => {
+  if (error.response) {
+    // The request was made and the server responded with a status code
+    // that falls out of the range of 2xx
+    console.log(error.response.data);
+    console.log(error.response.status);
+    console.log(error.response.headers);
+  } else if (error.request) {
+    // The request was made but no response was received
+    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+    // http.ClientRequest in node.js
+    console.log(error.request);
+  } else {
+    // Something happened in setting up the request that triggered an Error
+    console.log('Error', error.message);
+  }
+
+  store.dispatch(setLoading(false));
+  store.dispatch(
+    setModal({
+      text: 'An error occurred, please try again later',
+      visible: true,
+    }),
+  );
 };
 
 export const handleWatchlist = async () => {

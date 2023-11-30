@@ -10,6 +10,7 @@ import { Genres } from '../../components/Genres/Genres';
 import { setMovies } from '../../redux/reducers/movies';
 import { setLoading } from '../../redux/reducers/shared';
 import { discoverMovies } from '../../services/movies.service';
+import { handleError } from '../../tools';
 
 export const DiscoverPage = () => {
   const [activeGenre, setActiveGenre] = useState(-1);
@@ -30,7 +31,7 @@ export const DiscoverPage = () => {
 
       setActiveMovie(movies[0]);
     } catch (error) {
-      console.log(error);
+      handleError(error);
     }
   }, [activeGenre, dispatch, setActiveMovie]);
 

@@ -1,3 +1,11 @@
-::backdrop {
+.dialog {
+  padding: 2rem;
+}
+
+.dialog::backdrop {
   background-color: rgba(20, 20, 25, 0.85);
+}
+
+.content {
+  margin: 1rem 0;
 }

@@ -6,7 +6,7 @@ import { Content } from '../../components/Content/Content';
 import { setLoading } from '../../redux/reducers/shared';
 import { setMovies } from '../../redux/reducers/watchlist';
 import { getMovie } from '../../services/movies.service';
-import { handleWatchlist } from '../../tools';
+import { handleError, handleWatchlist } from '../../tools';
 
 export const ProfilePage = () => {
   const { movies, watchlist } = useSelector((state) => state.watchlist);
@@ -18,7 +18,7 @@ export const ProfilePage = () => {
       try {
         await handleWatchlist();
       } catch (error) {
-        console.log(error);
+        handleError(error);
       }
     })();
   }, [dispatch]);
@@ -44,7 +44,7 @@ export const ProfilePage = () => {
           dispatch(setMovies(updatedMovies));
         }
       } catch (error) {
-        console.log(error);
+        handleError(error);
       }
     })();
   }, [dispatch, movies, watchlist]);
