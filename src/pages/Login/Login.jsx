@@ -6,6 +6,7 @@ import styles from './Login.module.css';
 import { Button } from '../../components/Button/Button';
 import { Input } from '../../components/Input/Input';
 import { setIsAuthenticated } from '../../redux/reducers/authentication';
+import { setLoading } from '../../redux/reducers/shared';
 import { login } from '../../services/authentication.service';
 import { validateCredentials } from '../../tools';
 
@@ -32,6 +33,8 @@ export const LoginPage = () => {
     setSubmitted(true);
 
     if (!warning.length) {
+      dispatch(setLoading(true));
+
       try {
         const { token } = await login(email, password);
 
@@ -42,6 +45,8 @@ export const LoginPage = () => {
         navigate('/discover');
       } catch (error) {
         console.log(error);
+        dispatch(setLoading(false));
+
         setError(error.response.data.message);
       }
     }

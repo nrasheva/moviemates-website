@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './Register.module.css';
 import { Button } from '../../components/Button/Button';
 import { Input } from '../../components/Input/Input';
+import { setLoading } from '../../redux/reducers/shared';
 import { register } from '../../services/authentication.service';
 import { validateCredentials } from '../../tools';
 
@@ -13,6 +15,8 @@ export const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [warning, setWarning] = useState(false);
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -28,12 +32,16 @@ export const RegisterPage = () => {
     setSubmitted(true);
 
     if (!warning.length) {
+      dispatch(setLoading(true));
+
       try {
         await register(email, password);
 
         navigate('/login');
       } catch (error) {
         console.log(error);
+        dispatch(setLoading(false));
+
         setError(error.response.data.message);
       }
     }
