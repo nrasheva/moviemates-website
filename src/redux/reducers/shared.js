@@ -1,7 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  loading: true,
+  modal: {
+    text: '',
+    visible: false,
+  },
+  overlay: true,
 };
 
 export const sharedSlice = createSlice({
@@ -10,11 +14,14 @@ export const sharedSlice = createSlice({
   reducers: {
     resetShared: () => initialState,
     setLoading: (state, action) => {
-      state.loading = action.payload;
+      state.overlay = action.payload;
+    },
+    setModal: (state, action) => {
+      state.modal = action.payload;
     },
   },
 });
 
-export const { resetShared, setLoading } = sharedSlice.actions;
+export const { resetShared, setLoading, setModal } = sharedSlice.actions;
 
 export const sharedReducer = sharedSlice.reducer;

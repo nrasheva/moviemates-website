@@ -1,4 +1,4 @@
-* {
+*:not(dialog) {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -32,7 +32,7 @@
 
 .hero-column {
   align-items: center;
-  /* border: 1px solid var(--orange-web); */
+  border: 1px solid var(--orange-web);
   display: flex;
   z-index: 1;
 }

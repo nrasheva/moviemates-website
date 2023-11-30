@@ -2,11 +2,13 @@
   display: flex;
   flex-direction: column;
   list-style-position: inside;
-  margin-right: var(--nav-height);
-  max-height: 100svh;
+  list-style-type: none;
+  margin: var(--nav-height) var(--nav-height) 0 0;
+  max-height: calc(100svh - var(--nav-height));
   min-width: fit-content;
-  overflow: hidden;
-  padding-top: var(--nav-height);
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
 }
 
 .genres li {
