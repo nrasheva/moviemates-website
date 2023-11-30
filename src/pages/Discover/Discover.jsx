@@ -65,9 +65,11 @@ export const DiscoverPage = () => {
         }}>
         <div className='hero-column'>
           <Genres handleActiveGenre={handleActiveGenre} />
-          <div className={styles['scroll-container']}>
-            <Content buttons={<Buttons />} heading={activeMovie.title} subHeading={activeMovie.overview} />
-          </div>
+          {Object.keys(activeMovie).length > 0 && (
+            <div className={styles['scroll-container']}>
+              <Content buttons={<Buttons />} heading={activeMovie.title} subHeading={activeMovie.overview} />
+            </div>
+          )}
         </div>
         <div className='hero-column' />
       </div>

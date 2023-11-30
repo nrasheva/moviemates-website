@@ -6,6 +6,7 @@ import styles from './Discussions.module.css';
 import { getComments } from '../../services/comments.service';
 import { Button } from '../Button/Button';
 import { CreateComment } from '../CreateComment/CreateComment';
+import { Loader } from '../Loader/Loader';
 
 export const Discussions = forwardRef((props, ref) => {
   const [comments, setComments] = useState([]);
@@ -59,7 +60,7 @@ export const Discussions = forwardRef((props, ref) => {
         ) : (
           <>
             {loading ? (
-              <p className='font-m white'>Loading</p>
+              <Loader />
             ) : visible ? (
               <CreateComment
                 handleGetComments={handleGetComments}

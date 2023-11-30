@@ -102,16 +102,18 @@ export const DetailsPage = () => {
           })`,
         }}>
         <div className='hero-column'>
-          <Content buttons={<Buttons />} heading={movie.title} subHeading={movie.overview}>
-            <div className={styles.details}>
-              {details.map((detail) => (
-                <span key={detail.icon}>
-                  <FontAwesomeIcon icon={`fa-regular ${detail.icon}`} />
-                  <p className='font-s'>{detail.text}</p>
-                </span>
-              ))}
-            </div>
-          </Content>
+          {Object.keys(movie).length > 0 && (
+            <Content buttons={<Buttons />} heading={movie.title} subHeading={movie.overview}>
+              <div className={styles.details}>
+                {details.map((detail) => (
+                  <span key={detail.icon}>
+                    <FontAwesomeIcon icon={`fa-regular ${detail.icon}`} />
+                    <p className='font-s'>{detail.text}</p>
+                  </span>
+                ))}
+              </div>
+            </Content>
+          )}
         </div>
         <div className='hero-column' />
       </div>
