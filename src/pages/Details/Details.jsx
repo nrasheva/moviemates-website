@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import styles from './Details.module.css';
 import noise from '../../assets/noise.jpg';
@@ -21,6 +21,7 @@ export const DetailsPage = () => {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
   const { movieId } = useParams();
 
   const discussionsRef = useRef(null);
@@ -32,22 +33,23 @@ export const DetailsPage = () => {
 
     document.documentElement.style.scrollBehavior = 'smooth';
 
-    (async () => {
-      try {
-        if (isAuthenticated) {
-          await handleWatchlist();
+    if (movieId !== 'undefined') {
+      (async () => {
+        try {
+          if (isAuthenticated) {
+            await handleWatchlist();
+          }
+          const { movie } = await getMovie(movieId);
+          dispatch(setLoading(false));
+          setMovie(movie);
+        } catch (error) {
+          handleError(error);
         }
-
-        const { movie } = await getMovie(movieId);
-
-        dispatch(setLoading(false));
-
-        setMovie(movie);
-      } catch (error) {
-        handleError(error);
-      }
-    })();
-  }, [dispatch, isAuthenticated, movieId]);
+      })();
+    } else {
+      navigate('/discover');
+    }
+  }, [dispatch, isAuthenticated, movieId, navigate]);
 
   const details = useMemo(() => {
     let fields = [];
@@ -117,7 +119,7 @@ export const DetailsPage = () => {
         </div>
         <div className='hero-column' />
       </div>
-      <Discussions movieId={movieId} ref={discussionsRef} />
+      {movieId !== 'undefined' && <Discussions movieId={movieId} ref={discussionsRef} />}
     </main>
   );
 };
