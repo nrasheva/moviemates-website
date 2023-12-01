@@ -65,6 +65,12 @@ export const DetailsPage = () => {
     return fields;
   }, [movie.release_date, movie.runtime, movie.vote_average]);
 
+  const handleScrollIntoView = () => {
+    const y = discussionsRef.current.offsetTop;
+
+    window.scrollTo(0, y - 60); // Offset the height of the Navigation (60px)
+  };
+
   const favourite = useMemo(() => {
     return !!watchlist.find((movie) => movie === Number(movieId));
   }, [movieId, watchlist]);
@@ -86,7 +92,7 @@ export const DetailsPage = () => {
   const Buttons = () => {
     return (
       <>
-        <Button icon='' onClick={() => discussionsRef.current.scrollIntoView()} text='Discussions' type='filled' />
+        <Button icon='' onClick={handleScrollIntoView} text='Discussions' type='filled' />
         {isAuthenticated && (
           <Button icon={favourite ? 'fas fa-heart' : 'far fa-heart'} onClick={toggleWatchlist} text='' type='square' />
         )}
