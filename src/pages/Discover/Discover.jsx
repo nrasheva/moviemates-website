@@ -7,6 +7,7 @@ import noise from '../../assets/noise.jpg';
 import { Button } from '../../components/Button/Button';
 import { Content } from '../../components/Content/Content';
 import { Genres } from '../../components/Genres/Genres';
+import { Slider } from '../../components/Slider/Slider';
 import { setMovies } from '../../redux/reducers/movies';
 import { setLoading } from '../../redux/reducers/shared';
 import { discoverMovies } from '../../services/movies.service';
@@ -15,10 +16,27 @@ import { handleError } from '../../tools';
 export const DiscoverPage = () => {
   const [activeGenre, setActiveGenre] = useState(-1);
   const [activeMovie, setActiveMovie] = useState({});
+  const [desktop, setDesktop] = useState(false);
 
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleDevice = () => {
+      const { matches: isDesktop } = window.matchMedia('(min-width: 1200px)');
+
+      if (desktop !== isDesktop) {
+        setDesktop(isDesktop);
+      }
+    };
+
+    window.addEventListener('resize', handleDevice);
+
+    return () => {
+      window.removeEventListener('resize', handleDevice);
+    };
+  }, [desktop]);
 
   const handleDiscoverMovies = useCallback(async () => {
     dispatch(setLoading(true));
@@ -71,7 +89,9 @@ export const DiscoverPage = () => {
             </div>
           )}
         </div>
-        <div className='hero-column' />
+        <div className='hero-column'>
+          <Slider />
+        </div>
       </div>
     </main>
   );

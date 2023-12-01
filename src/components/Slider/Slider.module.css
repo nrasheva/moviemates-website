@@ -1,0 +1,23 @@
+.slider-container {
+  inset: auto 0 var(--nav-height) 0;
+  position: absolute;
+}
+
+.slider {
+  align-self: flex-end;
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: pointer;
+}
+
+.slide {
+  background-color: var(--orange-web);
+  flex: 0 0 calc(100% / 3 - 1rem);
+  height: 200px;
+  scroll-snap-align: start;
+}
