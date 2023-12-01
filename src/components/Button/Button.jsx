@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Button.module.css';
 
 export const Button = (props) => {
-  if (props.type === 'square') {
+  if (props.type === 'round' || props.type === 'square') {
     return (
-      <button className={styles.square} onClick={props.onClick}>
+      <button className={styles[props.type]} onClick={props.onClick}>
         <FontAwesomeIcon icon={props.icon} />
       </button>
     );

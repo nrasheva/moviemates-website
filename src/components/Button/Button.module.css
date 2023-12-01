@@ -7,6 +7,10 @@ button {
   white-space: nowrap;
 }
 
+.empty {
+  color: var(--orange-web);
+}
+
 .filled {
   background-color: var(--orange-web);
   color: black;
@@ -21,6 +25,14 @@ button {
   border: 1px solid var(--orange-web);
   color: var(--orange-web);
   padding: 0 2rem;
+}
+
+.round {
+  border-radius: 50%;
+  border: 1px solid var(--orange-web);
+  color: var(--orange-web);
+  height: 2rem;
+  width: 2rem;
 }
 
 .square {

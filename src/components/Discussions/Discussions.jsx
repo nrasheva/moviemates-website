@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Discussions.module.css';
 import { getComments } from '../../services/comments.service';
 import { Button } from '../Button/Button';
+import { Comment } from '../Comment/Comment';
 import { CreateComment } from '../CreateComment/CreateComment';
 import { Loader } from '../Loader/Loader';
 
@@ -48,15 +49,20 @@ export const Discussions = forwardRef((props, ref) => {
       </div>
       <div className={styles.discussions}>
         {comments.length ? (
-          <div className={styles.comments}>
-            {comments.map((comment) => {
-              return (
-                <p className='font-m white' key={comment._id}>
-                  {comment.content}
-                </p>
-              );
-            })}
-          </div>
+          <>
+            <div className={styles.comments}>
+              {comments
+                .filter((comment) => !comment.parent)
+                .map((comment) => (
+                  <Comment comment={comment} key={comment._id} />
+                ))}
+            </div>
+            <CreateComment
+              handleGetComments={handleGetComments}
+              movieId={props.movieId}
+              onCancel={() => setVisible(!visible)}
+            />
+          </>
         ) : (
           <>
             {loading ? (

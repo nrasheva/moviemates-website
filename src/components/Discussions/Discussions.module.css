@@ -9,3 +9,9 @@
   min-height: 50svh;
   text-align: center;
 }
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}

@@ -17,6 +17,18 @@ export const formatDate = (date) => {
   return new Date(date).toLocaleDateString('en-GB', options);
 };
 
+export const formatTimestamp = (timestamp) => {
+  const options = {
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    month: 'long',
+    year: 'numeric',
+  };
+
+  return new Date(timestamp * 1000).toLocaleDateString('en-GB', options);
+};
+
 export const handleError = (error) => {
   if (error.response) {
     // The request was made and the server responded with a status code

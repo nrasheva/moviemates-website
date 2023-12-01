@@ -1,0 +1,23 @@
+.comment {
+  align-items: flex-start;
+  border-bottom: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  text-align: left;
+}
+
+.created {
+  color: rgb(165, 165, 165);
+  margin-bottom: 1rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.actions > svg {
+  color: var(--orange-web);
+}
