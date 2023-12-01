@@ -10,7 +10,13 @@ export const CreateComment = (props) => {
 
   const handleCreateComment = async () => {
     try {
-      await createComment({ content, movie: Number(props.movieId) });
+      const data = { content, movie: Number(props.movieId) };
+
+      if (props.parent) {
+        data.parent = props.parent;
+      }
+
+      await createComment(data);
 
       props.handleGetComments();
 

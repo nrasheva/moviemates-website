@@ -13,6 +13,10 @@ export const Discussions = forwardRef((props, ref) => {
   const [comments, setComments] = useState([]);
   const [fetched, setFetched] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [parent, setParent] = useState({
+    author: '',
+    id: '',
+  });
   const [visible, setVisible] = useState(false);
 
   const isAuthenticated = useSelector((state) => state.authentication.isAuthenticated);
@@ -30,6 +34,10 @@ export const Discussions = forwardRef((props, ref) => {
           setComments(comments);
           setFetched(true);
           setLoading(false);
+          setParent({
+            author: '',
+            id: '',
+          });
         } catch (error) {
           console.log(error);
           setLoading(false);
@@ -54,13 +62,15 @@ export const Discussions = forwardRef((props, ref) => {
               {comments
                 .filter((comment) => !comment.parent)
                 .map((comment) => (
-                  <Comment comment={comment} key={comment._id} />
+                  <Comment comment={comment} comments={comments} key={comment._id} setParent={setParent} />
                 ))}
             </div>
+            <p className='white'>{parent.author}</p>
             <CreateComment
               handleGetComments={handleGetComments}
               movieId={props.movieId}
               onCancel={() => setVisible(!visible)}
+              parent={parent.id}
             />
           </>
         ) : (
@@ -72,6 +82,7 @@ export const Discussions = forwardRef((props, ref) => {
                 handleGetComments={handleGetComments}
                 movieId={props.movieId}
                 onCancel={() => setVisible(!visible)}
+                parent={parent.id}
               />
             ) : fetched ? (
               <>
