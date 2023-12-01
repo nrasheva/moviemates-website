@@ -26,9 +26,7 @@ export const DiscoverPage = () => {
     const handleDevice = () => {
       const { matches: isDesktop } = window.matchMedia('(min-width: 1200px)');
 
-      if (desktop !== isDesktop) {
-        setDesktop(isDesktop);
-      }
+      setDesktop(isDesktop);
     };
 
     window.addEventListener('resize', handleDevice);

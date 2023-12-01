@@ -1,10 +1,12 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 import styles from './Comment.module.css';
 import { decodeToken, formatTimestamp } from '../../tools';
 import { Button } from '../Button/Button';
 
 export const Comment = (props) => {
+  const [expanded, setExpanded] = useState(false);
+
   const owner = useMemo(() => {
     const decodedToken = decodeToken();
 
@@ -34,13 +36,33 @@ export const Comment = (props) => {
       ) : (
         <Button icon='' onClick={() => props.setParent({ author, id: props.comment._id })} text='Reply' type='empty' />
       )}
+      {expanded && (
+        <div style={{ width: '100%' }}>
+          {props.comments
+            .filter((comment) => comment.parent === props.comment._id)
+            .map((comment) => (
+              <Comment
+                comment={comment}
+                comments={props.comments}
+                key={comment._id}
+                setParent={() => props.setParent({ author, id: comment._id })}
+              />
+            ))}
+        </div>
+      )}
       {replies.length > 0 && (
-        <Button
-          icon=''
-          onClick={() => {}}
-          text={`View ${replies.length} ${replies.length > 1 ? 'replies' : 'reply'}`}
-          type='empty'
-        />
+        <>
+          {expanded ? (
+            <Button icon='' onClick={() => setExpanded(false)} text='Hide replies' type='empty' />
+          ) : (
+            <Button
+              icon=''
+              onClick={() => setExpanded(true)}
+              text={`View ${replies.length} ${replies.length > 1 ? 'replies' : 'reply'}`}
+              type='empty'
+            />
+          )}
+        </>
       )}
     </div>
   );
