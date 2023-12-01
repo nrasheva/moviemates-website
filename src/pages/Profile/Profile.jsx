@@ -53,9 +53,7 @@ export const ProfilePage = () => {
     <main className='main'>
       <div className='hero'>
         <div className='hero-column'>
-          <div className={styles['scroll-container']}>
-            <Content buttons={<></>} heading='@nadya' subHeading='' />
-          </div>
+          <Content buttons={<></>} heading='@nadya' subHeading='' />
         </div>
         <div className='hero-column'>
           {movies.map((movie, i) => (

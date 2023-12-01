@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import styles from './Discover.module.css';
 import noise from '../../assets/noise.jpg';
 import { Button } from '../../components/Button/Button';
 import { Content } from '../../components/Content/Content';
@@ -28,6 +27,8 @@ export const DiscoverPage = () => {
 
       setDesktop(isDesktop);
     };
+
+    handleDevice();
 
     window.addEventListener('resize', handleDevice);
 
@@ -72,25 +73,27 @@ export const DiscoverPage = () => {
 
   return (
     <main className='main'>
-      <div
-        className='hero'
-        style={{
-          backgroundImage: `url(${
-            activeMovie.backdrop_path ? `https://image.tmdb.org/t/p/original/${activeMovie.backdrop_path}` : noise
-          })`,
-        }}>
-        <div className='hero-column'>
-          <Genres handleActiveGenre={handleActiveGenre} />
-          {Object.keys(activeMovie).length > 0 && (
-            <div className={styles['scroll-container']}>
+      {desktop ? (
+        <div
+          className='hero'
+          style={{
+            backgroundImage: `url(${
+              activeMovie.backdrop_path ? `https://image.tmdb.org/t/p/original/${activeMovie.backdrop_path}` : noise
+            })`,
+          }}>
+          <div className='hero-column'>
+            <Genres handleActiveGenre={handleActiveGenre} />
+            {Object.keys(activeMovie).length > 0 && (
               <Content buttons={<Buttons />} heading={activeMovie.title} subHeading={activeMovie.overview} />
-            </div>
-          )}
+            )}
+          </div>
+          <div className='hero-column'>
+            <Slider />
+          </div>
         </div>
-        <div className='hero-column'>
-          <Slider />
-        </div>
-      </div>
+      ) : (
+        <></>
+      )}
     </main>
   );
 };

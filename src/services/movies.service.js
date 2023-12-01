@@ -17,7 +17,7 @@ export const discoverMovies = async (genre) => {
   if (pagination) {
     if (genreIndex !== -1) {
       // TMDB API page must be less than or equal to 500
-      pagination[genreIndex].page = page <= (data.total_pages && 500) ? page + 1 : 1;
+      pagination[genreIndex].page = page < (data.total_pages && 500) ? page + 1 : 1;
 
       localStorage.setItem('pagination', JSON.stringify(pagination));
     } else {
