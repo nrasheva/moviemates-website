@@ -1,57 +1,24 @@
-import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Slider.module.css';
+import { setActiveMovie } from '../../redux/reducers/movies';
 
-export const Slider = () => {
-  const [isDragging, setIsDragging] = useState(false);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [startX, setStartX] = useState(0);
+export const Slider = (props) => {
+  const { activeMovie, movies } = useSelector((state) => state.movies);
 
-  const sliderRef = useRef(null);
-
-  useEffect(() => {
-    const slider = sliderRef.current;
-
-    const handleMouseDown = (e) => {
-      setIsDragging(true);
-      setScrollLeft(slider.scrollLeft);
-      setStartX(e.pageX - slider.offsetLeft);
-    };
-
-    const handleMouseUp = () => {
-      setIsDragging(false);
-    };
-
-    const handleMouseMove = (e) => {
-      if (isDragging) {
-        e.preventDefault();
-
-        const x = e.pageX - slider.offsetLeft;
-        const distance = x - startX;
-
-        slider.scrollLeft = scrollLeft - distance;
-      }
-    };
-
-    slider.addEventListener('mousedown', handleMouseDown);
-    slider.addEventListener('mousemove', handleMouseMove);
-    slider.addEventListener('mouseup', handleMouseUp);
-
-    return () => {
-      slider.removeEventListener('mousedown', handleMouseDown);
-      slider.removeEventListener('mousemove', handleMouseMove);
-      slider.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, [isDragging, scrollLeft, startX]);
+  const dispatch = useDispatch();
 
   return (
     <div className={styles['slider-container']}>
-      <div className={styles.slider} ref={sliderRef}>
-        <div className={styles.slide}>1</div>
-        <div className={styles.slide}>2</div>
-        <div className={styles.slide}>3</div>
-        <div className={styles.slide}>4</div>
-        <div className={styles.slide}>5</div>
+      <div className={styles.slider}>
+        {movies.map((movie) => (
+          <div
+            className={`${styles.slide} ${activeMovie && activeMovie.id === movie.id ? styles.active : ''}`}
+            key={movie.id}
+            onClick={() => dispatch(setActiveMovie(movie))}>
+            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} style={{ maxWidth: '100%' }} />
+          </div>
+        ))}
       </div>
     </div>
   );
