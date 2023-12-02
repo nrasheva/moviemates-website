@@ -6,7 +6,7 @@
 
 .scroll-container {
   -ms-overflow-style: none;
-  background-image: url('../../assets/noise.jpg');
+  background-color: black;
   inset: 0;
   overflow-y: scroll;
   position: absolute;
