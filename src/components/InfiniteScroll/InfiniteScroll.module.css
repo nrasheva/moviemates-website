@@ -1,0 +1,18 @@
+.infinite-scroll {
+  inset: 0;
+  overflow-y: hidden;
+  position: absolute;
+}
+
+.scroll-container {
+  inset: 0;
+  overflow-y: scroll;
+  position: absolute;
+  scroll-snap-stop: always;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+}
+
+.movie {
+  scroll-snap-align: start;
+}

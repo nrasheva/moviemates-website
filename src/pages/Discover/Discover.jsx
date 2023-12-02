@@ -6,6 +6,7 @@ import noise from '../../assets/noise.jpg';
 import { Button } from '../../components/Button/Button';
 import { Content } from '../../components/Content/Content';
 import { Genres } from '../../components/Genres/Genres';
+import { InfiniteScroll } from '../../components/InfiniteScroll/InfiniteScroll';
 import { Slider } from '../../components/Slider/Slider';
 import { setMovies } from '../../redux/reducers/movies';
 import { setLoading } from '../../redux/reducers/shared';
@@ -92,7 +93,7 @@ export const DiscoverPage = () => {
           </div>
         </div>
       ) : (
-        <></>
+        <InfiniteScroll />
       )}
     </main>
   );

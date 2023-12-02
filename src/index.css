@@ -66,10 +66,12 @@ section {
   .hero {
     flex-direction: column;
     padding: var(--nav-height) calc(var(--horizontal-padding) / 2);
+    position: relative;
   }
 
   .hero::after {
     background: linear-gradient(0, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.25) 100%);
+    position: absolute;
   }
 
   .hero-column {
