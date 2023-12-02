@@ -1,24 +1,25 @@
 .genres {
+  -ms-overflow-style: none;
   display: flex;
   flex-direction: column;
-  list-style-position: inside;
   list-style-type: none;
   margin: var(--nav-height) var(--nav-height) 0 0;
-  max-height: calc(100svh - var(--nav-height));
+  max-height: calc(100svh - var(--nav-height) * 3);
   min-width: fit-content;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
   scrollbar-width: none;
 }
 
-.genres li {
-  cursor: pointer;
-  margin: 1rem 0;
-  transition: transform 0.35s;
+.genres::-webkit-scrollbar {
+  display: none;
 }
 
-.genres li:hover {
-  transform: scale(1.15);
+.genres li {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  min-height: calc((100svh - var(--nav-height) * 3) / 10);
 }
 
 @media only screen and (max-width: 768px) {
