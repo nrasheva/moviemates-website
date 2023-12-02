@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import noise from '../../assets/noise.jpg';
@@ -8,15 +8,18 @@ import { Content } from '../../components/Content/Content';
 import { Genres } from '../../components/Genres/Genres';
 import { InfiniteScroll } from '../../components/InfiniteScroll/InfiniteScroll';
 import { Slider } from '../../components/Slider/Slider';
-import { setMovies } from '../../redux/reducers/movies';
+import { setActiveGenre, setGenres } from '../../redux/reducers/genres';
+import { setActiveMovie, setMovies } from '../../redux/reducers/movies';
 import { setLoading } from '../../redux/reducers/shared';
+import { getGenres } from '../../services/genres.service';
 import { discoverMovies } from '../../services/movies.service';
 import { handleError } from '../../tools';
 
 export const DiscoverPage = () => {
-  const [activeGenre, setActiveGenre] = useState(-1);
-  const [activeMovie, setActiveMovie] = useState({});
   const [desktop, setDesktop] = useState(false);
+
+  const { activeGenre, genres } = useSelector((state) => state.genres);
+  const activeMovie = useSelector((state) => state.movies.activeMovie);
 
   const dispatch = useDispatch();
 
@@ -38,20 +41,34 @@ export const DiscoverPage = () => {
     };
   }, [desktop]);
 
+  useEffect(() => {
+    if (genres.length === 0) {
+      (async () => {
+        try {
+          const { genres } = await getGenres();
+
+          dispatch(setActiveGenre(genres[0].id));
+          dispatch(setGenres(genres));
+        } catch (error) {
+          handleError(error);
+        }
+      })();
+    }
+  }, [dispatch, genres.length]);
+
   const handleDiscoverMovies = useCallback(async () => {
     dispatch(setLoading(true));
 
     try {
       const { movies } = await discoverMovies(activeGenre);
 
+      dispatch(setActiveMovie(movies[0]));
       dispatch(setLoading(false));
       dispatch(setMovies(movies));
-
-      setActiveMovie(movies[0]);
     } catch (error) {
       handleError(error);
     }
-  }, [activeGenre, dispatch, setActiveMovie]);
+  }, [activeGenre, dispatch]);
 
   useEffect(() => {
     if (activeGenre !== -1) {
@@ -68,10 +85,6 @@ export const DiscoverPage = () => {
     );
   };
 
-  const handleActiveGenre = useCallback((genre) => {
-    setActiveGenre(genre);
-  }, []);
-
   return (
     <main className='main'>
       {desktop ? (
@@ -83,7 +96,7 @@ export const DiscoverPage = () => {
             })`,
           }}>
           <div className='hero-column'>
-            <Genres handleActiveGenre={handleActiveGenre} />
+            <Genres />
             {Object.keys(activeMovie).length > 0 && (
               <Content buttons={<Buttons />} heading={activeMovie.title} subHeading={activeMovie.overview} />
             )}
