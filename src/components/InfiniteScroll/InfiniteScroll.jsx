@@ -1,38 +1,46 @@
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './InfiniteScroll.module.css';
-import noise from '../../assets/noise.jpg';
-import { Content } from '../../components/Content/Content';
-import { Button } from '../Button/Button';
+import { setMovies } from '../../redux/reducers/movies';
+import { discoverMovies } from '../../services/movies.service';
+import { handleError } from '../../tools';
+import { Movie } from '../Movie/Movie';
 
 export const InfiniteScroll = () => {
   const { activeMovie, movies } = useSelector((state) => state.movies);
 
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const Buttons = () => {
-    return <Button icon='' onClick={() => navigate(`/details/${activeMovie.id}`)} text='Details' type='filled' />;
-  };
+  const scrollContainerRef = useRef(null);
+
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo(0, 0);
+    }
+  }, []);
+
+  useEffect(() => {
+    const activeMovieIndex = movies.findIndex((movie) => movie.id === activeMovie.id);
+
+    if (activeMovieIndex !== -1 && activeMovieIndex === movies.length - 6) {
+      (async () => {
+        try {
+          const { movies: newMovies } = await discoverMovies();
+
+          dispatch(setMovies([...movies, ...newMovies]));
+        } catch (error) {
+          handleError(error);
+        }
+      })();
+    }
+  }, [activeMovie.id, dispatch, movies]);
 
   return (
     <div className={styles['infinite-scroll']}>
-      <div className={styles['scroll-container']}>
+      <div className={styles['scroll-container']} ref={scrollContainerRef}>
         {movies.map((movie) => (
-          <div
-            className={`hero ${styles.movie}`}
-            key={movie.id}
-            style={{
-              backgroundImage: `url(${
-                movie.backdrop_path ? `https://image.tmdb.org/t/p/original/${movie.backdrop_path}` : noise
-              })`,
-            }}>
-            <div className='hero-column'>
-              {/* <Genres handleActiveGenre={handleActiveGenre} /> */}
-              <Content buttons={<Buttons />} heading={movie.title} subHeading={movie.overview} />
-            </div>
-            <div className='hero-column' />
-          </div>
+          <Movie key={movie.id} movie={movie} />
         ))}
       </div>
     </div>

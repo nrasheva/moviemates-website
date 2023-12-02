@@ -18,7 +18,3 @@
 .scroll-container::-webkit-scrollbar {
   display: none;
 }
-
-.movie {
-  scroll-snap-align: start;
-}
