@@ -4,6 +4,7 @@
 }
 
 .slider {
+  -ms-overflow-style: none;
   align-self: flex-end;
   cursor: pointer;
   display: flex;
@@ -13,6 +14,10 @@
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
 }
 
 .slide {
