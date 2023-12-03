@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './InfiniteScroll.module.css';
@@ -8,6 +8,8 @@ import { handleError } from '../../tools';
 import { Movie } from '../Movie/Movie';
 
 export const InfiniteScroll = () => {
+  const [initialized, setInitialized] = useState(false);
+
   const { activeMovie, movies } = useSelector((state) => state.movies);
 
   const dispatch = useDispatch();
@@ -15,10 +17,16 @@ export const InfiniteScroll = () => {
   const scrollContainerRef = useRef(null);
 
   useEffect(() => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTo(0, 0);
+    if (!initialized && scrollContainerRef.current) {
+      const activeMovieIndex = movies.findIndex((movie) => movie.id === activeMovie.id);
+
+      const y = activeMovieIndex > 0 ? scrollContainerRef.current.offsetHeight * activeMovieIndex : 0;
+
+      scrollContainerRef.current.scrollTo(0, y);
     }
-  }, []);
+
+    setInitialized(true);
+  }, [activeMovie.id, initialized, movies]);
 
   useEffect(() => {
     const activeMovieIndex = movies.findIndex((movie) => movie.id === activeMovie.id);
