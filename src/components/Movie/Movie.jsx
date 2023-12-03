@@ -68,7 +68,7 @@ export const Movie = (props) => {
           props.movie.backdrop_path ? `https://image.tmdb.org/t/p/original/${props.movie.backdrop_path}` : noise
         })`,
       }}>
-      <div className='hero-column' style={{ opacity, transition: 'opacity 0.25s ease-in-out' }}>
+      <div className='hero-column' style={{ opacity, transition: 'opacity 0.1s ease-in-out' }}>
         {/* <Genres handleActiveGenre={handleActiveGenre} /> */}
         <Content buttons={<Buttons />} heading={props.movie.title} subHeading={props.movie.overview} />
       </div>

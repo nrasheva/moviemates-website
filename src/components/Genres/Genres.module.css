@@ -20,6 +20,11 @@
   cursor: pointer;
   display: flex;
   min-height: calc((100svh - var(--nav-height) * 3) / 10);
+  opacity: 0.5;
+}
+
+.active {
+  opacity: 1 !important;
 }
 
 @media only screen and (max-width: 768px) {
