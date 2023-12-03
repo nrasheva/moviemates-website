@@ -14,6 +14,7 @@ import { addMovie, deleteMovie } from '../../services/watchlist.service';
 import { formatDate, handleError, handleWatchlist } from '../../tools';
 
 export const DetailsPage = () => {
+  const [bounce, setBounce] = useState(false);
   const [movie, setMovie] = useState({});
 
   const isAuthenticated = useSelector((state) => state.authentication.isAuthenticated);
@@ -81,6 +82,12 @@ export const DetailsPage = () => {
         await deleteMovie(movieId);
       } else {
         await addMovie(movieId);
+
+        setBounce(true);
+
+        setTimeout(() => {
+          setBounce(false);
+        }, 1000);
       }
 
       await handleWatchlist();
@@ -94,7 +101,13 @@ export const DetailsPage = () => {
       <>
         <Button icon='' onClick={handleScrollIntoView} text='Discussions' type='filled' />
         {isAuthenticated && (
-          <Button icon={favourite ? 'fas fa-heart' : 'far fa-heart'} onClick={toggleWatchlist} text='' type='square' />
+          <Button
+            bounce={bounce}
+            icon={favourite ? 'fas fa-heart' : 'far fa-heart'}
+            onClick={toggleWatchlist}
+            text=''
+            type='square'
+          />
         )}
       </>
     );

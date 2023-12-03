@@ -6,7 +6,7 @@ export const Button = (props) => {
   if (props.type === 'round' || props.type === 'square') {
     return (
       <button className={styles[props.type]} onClick={props.onClick}>
-        <FontAwesomeIcon icon={props.icon} />
+        <FontAwesomeIcon bounce={props.bounce} icon={props.icon} />
       </button>
     );
   }
