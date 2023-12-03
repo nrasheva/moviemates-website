@@ -44,6 +44,11 @@ export const Discussions = forwardRef((props, ref) => {
     handleGetComments();
   }, [handleGetComments]);
 
+  const handleCancel = () => {
+    setParent({});
+    setVisible(false);
+  };
+
   return (
     <section ref={ref}>
       <div className='section-heading'>
@@ -56,7 +61,13 @@ export const Discussions = forwardRef((props, ref) => {
               {comments
                 .filter((comment) => !comment.parent)
                 .map((comment) => (
-                  <Comment comment={comment} comments={comments} key={comment._id} setParent={setParent} />
+                  <Comment
+                    comment={comment}
+                    comments={comments}
+                    handleGetComments={handleGetComments}
+                    key={comment._id}
+                    setParent={setParent}
+                  />
                 ))}
             </div>
             {Object.keys(parent).length > 0 && (
@@ -73,7 +84,7 @@ export const Discussions = forwardRef((props, ref) => {
             <CreateComment
               handleGetComments={handleGetComments}
               movieId={props.movieId}
-              onCancel={() => setVisible(!visible)}
+              onCancel={handleCancel}
               parent={parent._id}
             />
           </>
@@ -85,7 +96,7 @@ export const Discussions = forwardRef((props, ref) => {
               <CreateComment
                 handleGetComments={handleGetComments}
                 movieId={props.movieId}
-                onCancel={() => setVisible(!visible)}
+                onCancel={handleCancel}
                 parent={parent._id}
               />
             ) : fetched ? (

@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react';
 
 import styles from './Comment.module.css';
-import { decodeToken, formatTimestamp } from '../../tools';
+import { deleteComment } from '../../services/comments.service';
+import { decodeToken, formatTimestamp, handleError } from '../../tools';
 import { Button } from '../Button/Button';
 
 export const Comment = (props) => {
@@ -17,10 +18,19 @@ export const Comment = (props) => {
     return props.comments.filter((comment) => comment.parent === props.comment._id);
   }, [props.comment._id, props.comments]);
 
+  const handleDeleteComment = async () => {
+    try {
+      await deleteComment(props.comment._id);
+
+      props.handleGetComments();
+    } catch (error) {
+      handleError(error);
+    }
+  };
+
   return (
     <div className={styles.comment}>
       <p className='font-m semi-bold white'>{`@${props.comment.author.email.split('@')[0]}`}</p>
-      <p className='font-m semi-bold white'>{props.comment._id}</p>
       <div className={styles.created}>
         <p className='font-s'>{formatTimestamp(props.comment.created)}</p>
       </div>
@@ -30,7 +40,7 @@ export const Comment = (props) => {
         {owner && (
           <>
             <Button icon='fa-solid fa-pen' onClick={() => {}} text='' type='round' />
-            <Button icon='fa-solid fa-trash' onClick={() => {}} text='' type='round' />
+            <Button icon='fa-solid fa-trash' onClick={handleDeleteComment} text='' type='round' />
           </>
         )}
       </div>
@@ -42,6 +52,7 @@ export const Comment = (props) => {
               <Comment
                 comment={comment}
                 comments={props.comments}
+                handleGetComments={props.handleGetComments}
                 key={comment._id}
                 setParent={() => props.setParent(comment)}
               />
