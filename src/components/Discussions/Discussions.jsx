@@ -13,10 +13,7 @@ export const Discussions = forwardRef((props, ref) => {
   const [comments, setComments] = useState([]);
   const [fetched, setFetched] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [parent, setParent] = useState({
-    author: '',
-    id: '',
-  });
+  const [parent, setParent] = useState({});
   const [visible, setVisible] = useState(false);
 
   const isAuthenticated = useSelector((state) => state.authentication.isAuthenticated);
@@ -34,10 +31,7 @@ export const Discussions = forwardRef((props, ref) => {
           setComments(comments);
           setFetched(true);
           setLoading(false);
-          setParent({
-            author: '',
-            id: '',
-          });
+          setParent({});
         } catch (error) {
           console.log(error);
           setLoading(false);
@@ -65,12 +59,22 @@ export const Discussions = forwardRef((props, ref) => {
                   <Comment comment={comment} comments={comments} key={comment._id} setParent={setParent} />
                 ))}
             </div>
-            <p className='white'>{parent.author}</p>
+            {Object.keys(parent).length > 0 && (
+              <div className={styles.parent}>
+                <span>
+                  <p className='font-m semi-bold white'>Replying to</p>
+                  <p className='font-m white'>{`@${parent.author.email.split('@')[0]}`}</p>
+                </span>
+                <span>
+                  <p className='font-m white'>{parent.content}</p>
+                </span>
+              </div>
+            )}
             <CreateComment
               handleGetComments={handleGetComments}
               movieId={props.movieId}
               onCancel={() => setVisible(!visible)}
-              parent={parent.id}
+              parent={parent._id}
             />
           </>
         ) : (
@@ -82,7 +86,7 @@ export const Discussions = forwardRef((props, ref) => {
                 handleGetComments={handleGetComments}
                 movieId={props.movieId}
                 onCancel={() => setVisible(!visible)}
-                parent={parent.id}
+                parent={parent._id}
               />
             ) : fetched ? (
               <>

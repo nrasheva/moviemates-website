@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './Slider.module.css';
 import { setActiveMovie } from '../../redux/reducers/movies';
 
-export const Slider = (props) => {
+export const Slider = () => {
   const { activeMovie, movies } = useSelector((state) => state.movies);
 
   const dispatch = useDispatch();

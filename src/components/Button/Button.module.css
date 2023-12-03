@@ -9,6 +9,7 @@ button {
 
 .empty {
   color: var(--orange-web);
+  height: fit-content;
 }
 
 .filled {
