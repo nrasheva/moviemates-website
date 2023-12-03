@@ -39,7 +39,7 @@ export const Comment = (props) => {
         <Button icon='fa-regular fa-comment' onClick={() => props.setParent(props.comment)} text='' type='round' />
         {owner && (
           <>
-            <Button icon='fa-solid fa-pen' onClick={() => {}} text='' type='round' />
+            <Button icon='fa-solid fa-pen' onClick={() => props.setEdit(props.comment)} text='' type='round' />
             <Button icon='fa-solid fa-trash' onClick={handleDeleteComment} text='' type='round' />
           </>
         )}
@@ -54,6 +54,7 @@ export const Comment = (props) => {
                 comments={props.comments}
                 handleGetComments={props.handleGetComments}
                 key={comment._id}
+                setEdit={props.setEdit}
                 setParent={() => props.setParent(comment)}
               />
             ))}

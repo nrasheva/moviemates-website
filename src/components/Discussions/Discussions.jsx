@@ -6,11 +6,12 @@ import styles from './Discussions.module.css';
 import { getComments } from '../../services/comments.service';
 import { Button } from '../Button/Button';
 import { Comment } from '../Comment/Comment';
-import { CreateComment } from '../CreateComment/CreateComment';
+import { HandleComment } from '../HandleComment/HandleComment';
 import { Loader } from '../Loader/Loader';
 
 export const Discussions = forwardRef((props, ref) => {
   const [comments, setComments] = useState([]);
+  const [edit, setEdit] = useState({});
   const [fetched, setFetched] = useState(false);
   const [loading, setLoading] = useState(false);
   const [parent, setParent] = useState({});
@@ -29,6 +30,7 @@ export const Discussions = forwardRef((props, ref) => {
           const { comments } = await getComments(props.movieId);
 
           setComments(comments);
+          setEdit({});
           setFetched(true);
           setLoading(false);
           setParent({});
@@ -45,6 +47,7 @@ export const Discussions = forwardRef((props, ref) => {
   }, [handleGetComments]);
 
   const handleCancel = () => {
+    setEdit({});
     setParent({});
     setVisible(false);
   };
@@ -66,6 +69,7 @@ export const Discussions = forwardRef((props, ref) => {
                     comments={comments}
                     handleGetComments={handleGetComments}
                     key={comment._id}
+                    setEdit={setEdit}
                     setParent={setParent}
                   />
                 ))}
@@ -81,10 +85,11 @@ export const Discussions = forwardRef((props, ref) => {
                 </span>
               </div>
             )}
-            <CreateComment
+            <HandleComment
+              comment={edit}
+              handleCancel={handleCancel}
               handleGetComments={handleGetComments}
               movieId={props.movieId}
-              onCancel={handleCancel}
               parent={parent._id}
             />
           </>
@@ -93,10 +98,11 @@ export const Discussions = forwardRef((props, ref) => {
             {loading ? (
               <Loader />
             ) : visible ? (
-              <CreateComment
+              <HandleComment
+                comment={edit}
+                handleCancel={handleCancel}
                 handleGetComments={handleGetComments}
                 movieId={props.movieId}
-                onCancel={handleCancel}
                 parent={parent._id}
               />
             ) : fetched ? (
