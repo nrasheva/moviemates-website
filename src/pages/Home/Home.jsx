@@ -12,7 +12,7 @@ export const HomePage = () => {
   };
 
   return (
-    <main className='main'>
+    <main>
       <div className={`hero ${styles.home}`}>
         <div className='hero-column'>
           <Content

@@ -12,7 +12,7 @@ export const NotFoundPage = () => {
   };
 
   return (
-    <main className='main'>
+    <main>
       <div className={`hero ${styles['not-found']}`}>
         <div className='hero-column'>
           <Content

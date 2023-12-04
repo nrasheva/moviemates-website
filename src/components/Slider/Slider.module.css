@@ -1,5 +1,5 @@
 .slider-container {
-  inset: auto 0 var(--nav-height) 0;
+  bottom: 0;
   position: absolute;
 }
 

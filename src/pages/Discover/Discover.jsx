@@ -88,7 +88,7 @@ export const DiscoverPage = () => {
   };
 
   return (
-    <main className='main'>
+    <main>
       {desktop ? (
         <div
           className='hero'

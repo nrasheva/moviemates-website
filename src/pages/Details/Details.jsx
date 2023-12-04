@@ -114,7 +114,7 @@ export const DetailsPage = () => {
   };
 
   return (
-    <main className='main'>
+    <main>
       <div
         className='hero'
         style={{
