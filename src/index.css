@@ -49,7 +49,7 @@ main:not(.auth) {
 }
 
 .hero-row {
-  border: 1px solid var(--orange-web);
+  /* border: 1px solid var(--orange-web); */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -88,6 +88,10 @@ section {
 
   .hero-column:last-of-type {
     display: none;
+  }
+
+  .hero-row:first-of-type {
+    padding: var(--nav-height) 0;
   }
 
   section {

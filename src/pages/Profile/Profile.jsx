@@ -53,7 +53,11 @@ export const ProfilePage = () => {
     <main>
       <div className='hero' style={{ flexDirection: 'column' }}>
         <div className='hero-row'>
-          <Content buttons={<></>} heading='Watchlist' subHeading='' />
+          <Content
+            buttons={null}
+            heading='Watchlist'
+            subHeading='Lorem Ipsum is simply dummy text of the typesetting industry'
+          />
         </div>
         <div className='hero-row'>
           <div className={styles['watchlist-container']}>

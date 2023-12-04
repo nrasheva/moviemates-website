@@ -6,7 +6,7 @@ export const Content = (props) => {
       <h1 className='white'>{props.heading}</h1>
       <p className='ellipsis font-m white'>{props.subHeading}</p>
       {props.children}
-      <div className={styles['button-container']}>{props.buttons}</div>
+      {props.buttons && <div className={styles['button-container']}>{props.buttons}</div>}
     </div>
   );
 };
