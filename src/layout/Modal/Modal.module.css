@@ -1,0 +1,13 @@
+.dialog {
+  border: none;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.dialog::backdrop {
+  background-color: rgba(20, 20, 25, 0.85);
+}
+
+.content {
+  margin: 1rem 0 2rem 0;
+}

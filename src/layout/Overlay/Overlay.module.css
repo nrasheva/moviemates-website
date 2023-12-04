@@ -1,0 +1,10 @@
+.overlay {
+  align-items: center;
+  background-color: rgb(20, 20, 25);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  margin-top: var(--nav-height);
+  position: fixed;
+  z-index: 3;
+}

@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '../components/Button/Button';
-import { Input } from '../components/Input/Input';
-import { register } from '../services/authentication.service';
-import { validateCredentials } from '../tools';
+import styles from './Register.module.css';
+import { Button } from '../../components/Button/Button';
+import { Input } from '../../components/Input/Input';
+import { setLoading } from '../../redux/reducers/shared';
+import { register } from '../../services/authentication.service';
+import { validateCredentials } from '../../tools';
 
 export const RegisterPage = () => {
   const [email, setEmail] = useState('');
@@ -12,6 +15,8 @@ export const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [warning, setWarning] = useState(false);
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -21,24 +26,30 @@ export const RegisterPage = () => {
     // If there is an API error, clear the error when the user starts correcting the credentials
     setError('');
     setWarning(issues);
-  }, [email, password, submitted]);
+  }, [email, password]);
 
   const handleRegister = async () => {
-    try {
-      await register(email, password);
-
-      navigate('/login');
-    } catch (error) {
-      console.log(error);
-      setError(error.response.data.message);
-    }
-
     setSubmitted(true);
+
+    if (!warning.length) {
+      dispatch(setLoading(true));
+
+      try {
+        await register(email, password);
+
+        navigate('/login');
+      } catch (error) {
+        console.log(error);
+        dispatch(setLoading(false));
+
+        setError(error.response.data.message);
+      }
+    }
   };
 
   return (
     <main className='auth'>
-      <div className='column' />
+      <div className={`${styles.register} column`} />
       <div className='column'>
         <form autoComplete='off' onSubmit={(e) => e.preventDefault()}>
           <h2 className='white'>Register</h2>
@@ -56,7 +67,7 @@ export const RegisterPage = () => {
             type='password'
             value={password}
           />
-          <Button onClick={handleRegister} text='Register' type='filled' />
+          <Button icon='' onClick={handleRegister} text='Register' type='filled' />
           <div className='auth-actions'>
             <p className='font-s white'>
               Already have an account?{' '}

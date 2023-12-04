@@ -1,4 +1,5 @@
-* {
+*:not(dialog) {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -6,17 +7,102 @@
 #root {
   display: flex;
   flex-direction: column;
+  min-height: 100svh;
 }
 
-@media only screen and(min-width: 1200px) {
-  #root {
-    min-height: 100vh;
+main:not(.auth) {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  background-color: rgb(20, 20, 25);
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex: 1;
+  min-height: 100svh;
+  padding: var(--nav-height) var(--horizontal-padding);
+}
+
+.hero::after {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.25) 100%);
+  content: '';
+  inset: 0;
+  position: fixed;
+}
+
+.hero-column {
+  align-items: center;
+  /* border: 1px solid var(--orange-web); */
+  display: flex;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-column:first-of-type {
+  flex: 1.5;
+}
+
+.hero-column:last-of-type {
+  flex: 1;
+}
+
+.hero-row {
+  /* border: 1px solid var(--orange-web); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+}
+
+.hero-row:first-of-type {
+  flex: 1;
+}
+
+section {
+  background-color: rgb(20, 20, 25);
+  padding: var(--nav-height) var(--horizontal-padding);
+  z-index: 1;
+}
+
+.section-heading {
+  padding-bottom: var(--nav-height);
+}
+
+@media only screen and (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    padding: var(--nav-height) calc(var(--horizontal-padding) / 2);
+    position: relative;
+  }
+
+  .hero::after {
+    background: linear-gradient(0, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.25) 100%);
+    position: absolute;
+  }
+
+  .hero-column {
+    align-items: flex-end;
+  }
+
+  .hero-column:last-of-type {
+    display: none;
+  }
+
+  .hero-row:first-of-type {
+    padding: var(--nav-height) 0;
+  }
+
+  section {
+    padding: var(--nav-height) calc(var(--horizontal-padding) / 2);
   }
 }
 
 /*-------------------------Variables-------------------------*/
 
 :root {
+  --border-color: rgb(80, 80, 80);
   --font: 'Poppins';
   --horizontal-padding: 10vw;
   --hunyadi-yellow: rgb(255, 185, 90);

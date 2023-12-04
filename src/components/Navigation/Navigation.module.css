@@ -16,11 +16,6 @@ nav {
   cursor: pointer;
   display: flex;
   font: 700 1.5rem var(--font);
-  gap: 1rem;
-}
-
-.nav-logo img {
-  height: 40px;
 }
 
 .nav-content {
@@ -89,6 +84,7 @@ nav {
     background-color: black;
     flex-direction: column;
     inset: var(--nav-height) 0 0 0;
+    min-height: 100svh;
     padding: var(--nav-height) calc(var(--horizontal-padding) / 2);
     position: absolute;
   }

@@ -1,0 +1,46 @@
+.loader {
+  animation: rotate 1s linear infinite;
+  border-radius: 50%;
+  height: 48px;
+  position: relative;
+  width: 48px;
+}
+
+.loader::after,
+.loader::before {
+  animation: prixClipFix 2s linear infinite;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  box-sizing: border-box;
+  content: '';
+  inset: 0px;
+  position: absolute;
+}
+
+.loader::after {
+  border-color: var(--orange-web);
+  inset: 8px;
+  transform: rotate3d(90, 90, 0, 180deg);
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  75%,
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+}

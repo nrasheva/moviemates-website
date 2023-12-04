@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Staatliches&display=swap');
 
+/*-------------------------Typography-------------------------*/
+
 h1 {
   font: 700 3rem var(--font);
 }
@@ -14,6 +16,14 @@ h2 {
 
 .font-s {
   font: 400 0.85rem var(--font);
+}
+
+.ellipsis {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .black {
@@ -58,7 +68,7 @@ h2 {
 }
 
 .column:last-of-type {
-  background-color: rgb(25, 25, 25);
+  background-color: rgb(20, 20, 25);
 }
 
 form {
@@ -88,7 +98,6 @@ form input:first-of-type {
 
 @media only screen and (min-width: 1200px) {
   .column:first-of-type {
-    background-color: var(--orange-web);
     display: flex;
   }
 }

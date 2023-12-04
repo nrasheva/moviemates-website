@@ -1,0 +1,19 @@
+.infinite-scroll {
+  inset: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+.scroll-container {
+  -ms-overflow-style: none;
+  background-color: black;
+  inset: 0;
+  overflow-y: scroll;
+  position: absolute;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}

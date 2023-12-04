@@ -1,5 +1,6 @@
 button {
   background: none;
+  border-radius: 1rem;
   border: none;
   cursor: pointer;
   height: 3rem;
@@ -8,15 +9,36 @@ button {
 
 .empty {
   color: var(--orange-web);
+  height: fit-content;
 }
 
 .filled {
   background-color: var(--orange-web);
-  border-radius: 1rem;
   color: black;
   padding: 0 2rem;
 }
 
 .filled:hover {
   background-color: var(--hunyadi-yellow);
+}
+
+.outlined {
+  border: 1px solid var(--orange-web);
+  color: var(--orange-web);
+  padding: 0 2rem;
+}
+
+.round {
+  border-radius: 50%;
+  border: 1px solid var(--orange-web);
+  color: var(--orange-web);
+  height: 2rem;
+  width: 2rem;
+}
+
+.square {
+  border: 1px solid var(--orange-web);
+  color: var(--orange-web);
+  font-size: 1rem;
+  width: 3rem;
 }

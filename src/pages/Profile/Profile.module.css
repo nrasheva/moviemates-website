@@ -1,0 +1,17 @@
+.watchlist-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.watchlist-container img {
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .watchlist-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

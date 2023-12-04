@@ -1,0 +1,32 @@
+.slider-container {
+  bottom: 0;
+  position: absolute;
+}
+
+.slider {
+  -ms-overflow-style: none;
+  align-self: flex-end;
+  cursor: pointer;
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  background-color: var(--orange-web);
+  display: flex;
+  flex: 0 0 calc(100% / 3 - 1rem);
+  opacity: 0.5;
+  scroll-snap-align: start;
+}
+
+.active {
+  opacity: 1;
+}
