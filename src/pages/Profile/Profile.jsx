@@ -50,15 +50,17 @@ export const ProfilePage = () => {
   }, [dispatch, movies, watchlist]);
 
   return (
-    <main className='main'>
-      <div className='hero'>
-        <div className='hero-column'>
-          <Content buttons={<></>} heading='@nadya' subHeading='' />
+    <main>
+      <div className='hero' style={{ flexDirection: 'column' }}>
+        <div className='hero-row'>
+          <Content buttons={<></>} heading='Watchlist' subHeading='' />
         </div>
-        <div className='hero-column'>
-          {movies.map((movie, i) => (
-            <div key={movie.id}>{`(${i}) ${movie.title}`}</div>
-          ))}
+        <div className='hero-row'>
+          <div className={styles['watchlist-container']}>
+            {movies.map((movie) => (
+              <img key={movie.id} src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
+            ))}
+          </div>
         </div>
       </div>
     </main>

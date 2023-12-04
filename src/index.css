@@ -10,17 +10,19 @@
   min-height: 100svh;
 }
 
-.main {
+main:not(.auth) {
   display: flex;
   flex-direction: column;
 }
 
 .hero {
+  background-color: rgb(20, 20, 25);
   background-position: center;
   background-size: cover;
   display: flex;
   flex: 1;
   min-height: 100svh;
+  padding: var(--nav-height) var(--horizontal-padding);
 }
 
 .hero::after {
@@ -32,7 +34,7 @@
 
 .hero-column {
   align-items: center;
-  border: 1px solid var(--orange-web);
+  /* border: 1px solid var(--orange-web); */
   display: flex;
   position: relative;
   z-index: 1;
@@ -46,6 +48,18 @@
   flex: 1;
 }
 
+.hero-row {
+  border: 1px solid var(--orange-web);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+}
+
+.hero-row:first-of-type {
+  flex: 1;
+}
+
 section {
   background-color: rgb(20, 20, 25);
   padding: var(--nav-height) var(--horizontal-padding);
@@ -54,12 +68,6 @@ section {
 
 .section-heading {
   padding-bottom: var(--nav-height);
-}
-
-@media only screen and (min-width: 1200px) {
-  .hero {
-    padding: 0 var(--horizontal-padding);
-  }
 }
 
 @media only screen and (max-width: 768px) {

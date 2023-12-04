@@ -1,11 +1,17 @@
-.watchlist {
-  align-items: center;
-  border-radius: 1rem;
-  border: 1px solid var(--border-color);
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  justify-content: center;
-  min-height: 50svh;
-  text-align: center;
+.watchlist-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.watchlist-container img {
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .watchlist-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
