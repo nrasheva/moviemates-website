@@ -17,7 +17,7 @@
 .badge {
   background-color: var(--orange-web);
   border-radius: 1rem;
-  color: rgb(20, 20, 25);
+  color: var(--night);
   padding: 0 0.5rem;
 }
 
