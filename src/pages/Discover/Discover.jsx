@@ -71,12 +71,12 @@ export const DiscoverPage = () => {
   }, [activeGenre, dispatch]);
 
   useEffect(() => {
-    if (activeGenre !== -1) {
+    if (activeGenre !== -1 && Object.keys(activeMovie).length === 0) {
       handleDiscoverMovies();
     } else {
       dispatch(setLoading(false));
     }
-  }, [activeGenre, dispatch, handleDiscoverMovies]);
+  }, [activeGenre, activeMovie, dispatch, handleDiscoverMovies]);
 
   const Buttons = () => {
     return (
