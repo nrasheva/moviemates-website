@@ -61,6 +61,8 @@ export const ProfilePage = () => {
   const handleDeleteMovie = async (e, movie) => {
     e.stopPropagation();
 
+    dispatch(setLoading(true));
+
     try {
       await deleteMovie(movie.id);
 

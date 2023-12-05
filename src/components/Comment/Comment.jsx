@@ -33,6 +33,11 @@ export const Comment = (props) => {
       <p className='font-m semi-bold white'>{`@${props.comment.author.email.split('@')[0]}`}</p>
       <div className={styles.created}>
         <p className='font-s'>{formatTimestamp(props.comment.created)}</p>
+        {props.comment.edited && (
+          <span className={styles.badge}>
+            <p className='font-s'>edited</p>
+          </span>
+        )}
       </div>
       <p className='font-m white'>{props.comment.content}</p>
       <div className={styles.actions}>
