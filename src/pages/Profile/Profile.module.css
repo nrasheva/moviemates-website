@@ -5,6 +5,7 @@
 }
 
 .movie {
+  cursor: pointer;
   position: relative;
 }
 

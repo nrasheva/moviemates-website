@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './Profile.module.css';
 import { Button } from '../../components/Button/Button';
@@ -15,6 +16,8 @@ export const ProfilePage = () => {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     (async () => {
       try {
@@ -28,27 +31,26 @@ export const ProfilePage = () => {
   useEffect(() => {
     (async () => {
       try {
-        // Extract IDs from watchlist that do not exist in movies to avoid redundant requests
-        const moviesWithoutDetails = watchlist.filter((id) => !movies.some((movie) => movie.id === id));
+        if (movies.length !== watchlist.length) {
+          // 1. Filter the movies that were removed from the watchlist
+          const removed = movies.filter((movie) => watchlist.includes(movie.id));
+          // 2. Extract the IDs from the watchlist that do not exist in movies to avoid redundant requests
+          const noDetails = watchlist.filter((id) => !removed.some((movie) => movie.id === id));
 
-        if (moviesWithoutDetails.length) {
-          dispatch(setLoading(true));
+          const updatedMovies = [...removed];
 
-          const updatedMovies = [...movies];
+          if (noDetails.length) {
+            dispatch(setLoading(true));
 
-          for (let i = 0; i < moviesWithoutDetails.length; i++) {
-            const { movie } = await getMovie(moviesWithoutDetails[i]);
+            for (let i = 0; i < noDetails.length; i++) {
+              const { movie } = await getMovie(noDetails[i]);
 
-            updatedMovies.push(movie);
+              updatedMovies.push(movie);
+            }
           }
 
           dispatch(setLoading(false));
           dispatch(setMovies(updatedMovies));
-        } else if (movies.length !== watchlist.length) {
-          // Filter the movies that were removed from the watchlist
-          const filteredMovies = watchlist.length ? movies.filter((movie) => !watchlist.includes(movie.id)) : [];
-
-          dispatch(setMovies(filteredMovies));
         }
       } catch (error) {
         handleError(error);
@@ -56,7 +58,9 @@ export const ProfilePage = () => {
     })();
   }, [dispatch, movies, watchlist]);
 
-  const handleDeleteMovie = async (movie) => {
+  const handleDeleteMovie = async (e, movie) => {
+    e.stopPropagation();
+
     try {
       await deleteMovie(movie.id);
 
@@ -81,12 +85,12 @@ export const ProfilePage = () => {
         <div className='hero-row'>
           <div className={styles['watchlist-container']}>
             {movies.map((movie) => (
-              <div className={styles.movie} key={movie.id}>
+              <div className={styles.movie} key={movie.id} onClick={() => navigate(`/details/${movie.id}`)}>
                 <span className={styles.overlay}>
                   <Button
                     bounce={false}
                     icon='fas fa-heart'
-                    onClick={() => handleDeleteMovie(movie)}
+                    onClick={(е) => handleDeleteMovie(е, movie)}
                     text=''
                     type='square'
                   />
