@@ -69,8 +69,14 @@ export const Discussions = forwardRef((props, ref) => {
                     comments={comments}
                     handleGetComments={handleGetComments}
                     key={comment._id}
-                    setEdit={setEdit}
-                    setParent={setParent}
+                    setEdit={(comment) => {
+                      setEdit(comment);
+                      setParent({});
+                    }}
+                    setParent={(comment) => {
+                      setEdit({});
+                      setParent(comment);
+                    }}
                   />
                 ))}
             </div>

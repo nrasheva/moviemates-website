@@ -28,6 +28,13 @@ export const Comment = (props) => {
     }
   };
 
+  const scrollToBottom = () => {
+    // Use timeout to allow the reply to section to render in order to obtain the correct scrollHeight
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    }, 1);
+  };
+
   return (
     <div className={styles.comment}>
       <p className='font-m semi-bold white'>{`@${props.comment.author.email.split('@')[0]}`}</p>
@@ -41,10 +48,26 @@ export const Comment = (props) => {
       </div>
       <p className='font-m white'>{props.comment.content}</p>
       <div className={styles.actions}>
-        <Button icon='fa-regular fa-comment' onClick={() => props.setParent(props.comment)} text='' type='round' />
+        <Button
+          icon='fa-regular fa-comment'
+          onClick={() => {
+            props.setParent(props.comment);
+            scrollToBottom();
+          }}
+          text=''
+          type='round'
+        />
         {owner && (
           <>
-            <Button icon='fa-solid fa-pen' onClick={() => props.setEdit(props.comment)} text='' type='round' />
+            <Button
+              icon='fa-solid fa-pen'
+              onClick={() => {
+                props.setEdit(props.comment);
+                scrollToBottom();
+              }}
+              text=''
+              type='round'
+            />
             <Button icon='fa-solid fa-trash' onClick={handleDeleteComment} text='' type='round' />
           </>
         )}
