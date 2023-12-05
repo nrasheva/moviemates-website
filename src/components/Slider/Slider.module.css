@@ -6,11 +6,12 @@
 .slider {
   -ms-overflow-style: none;
   align-self: flex-end;
-  cursor: pointer;
+  cursor: grab;
   display: flex;
   flex: 1;
   gap: 1rem;
   overflow-x: scroll;
+  scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
 }
@@ -22,7 +23,7 @@
 .slide {
   background-color: var(--orange-web);
   display: flex;
-  flex: 0 0 calc(100% / 3 - 1rem);
+  flex: 0 0 calc(100% / 3 - 2rem);
   opacity: 0.5;
   scroll-snap-align: start;
 }
