@@ -4,10 +4,31 @@
   grid-template-columns: repeat(5, 1fr);
 }
 
-.watchlist-container img {
+.movie {
+  cursor: pointer;
+  position: relative;
+}
+
+.movie img {
   height: auto;
   object-fit: cover;
   width: 100%;
+}
+
+.overlay {
+  align-items: flex-end;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  inset: 0;
+  justify-content: flex-end;
+  opacity: 0;
+  padding: 1rem;
+  position: absolute;
+  transition: opacity 0.25s ease;
+}
+
+.movie:hover .overlay {
+  opacity: 1;
 }
 
 @media only screen and (max-width: 768px) {

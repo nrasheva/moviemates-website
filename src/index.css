@@ -16,7 +16,7 @@ main:not(.auth) {
 }
 
 .hero {
-  background-color: rgb(20, 20, 25);
+  background-color: var(--night);
   background-position: center;
   background-size: cover;
   display: flex;
@@ -61,7 +61,7 @@ main:not(.auth) {
 }
 
 section {
-  background-color: rgb(20, 20, 25);
+  background-color: var(--night);
   padding: var(--nav-height) var(--horizontal-padding);
   z-index: 1;
 }
@@ -107,6 +107,7 @@ section {
   --horizontal-padding: 10vw;
   --hunyadi-yellow: rgb(255, 185, 90);
   --nav-height: 60px;
+  --night: rgb(20, 20, 25);
   --orange-web: rgb(255, 175, 60);
   --vertical-padding: 100px;
 }

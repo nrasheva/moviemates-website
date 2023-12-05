@@ -9,7 +9,16 @@
 
 .created {
   color: rgb(165, 165, 165);
+  display: flex;
+  gap: 0.5rem;
   margin-bottom: 1rem;
+}
+
+.badge {
+  background-color: rgb(165, 165, 165);
+  border-radius: 1rem;
+  color: var(--night);
+  padding: 0 0.5rem;
 }
 
 .actions {

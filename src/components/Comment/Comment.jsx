@@ -28,18 +28,46 @@ export const Comment = (props) => {
     }
   };
 
+  const scrollToBottom = () => {
+    // Use timeout to allow the reply to section to render in order to obtain the correct scrollHeight
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    }, 1);
+  };
+
   return (
     <div className={styles.comment}>
       <p className='font-m semi-bold white'>{`@${props.comment.author.email.split('@')[0]}`}</p>
       <div className={styles.created}>
         <p className='font-s'>{formatTimestamp(props.comment.created)}</p>
+        {props.comment.edited && (
+          <span className={styles.badge}>
+            <p className='font-s'>edited</p>
+          </span>
+        )}
       </div>
       <p className='font-m white'>{props.comment.content}</p>
       <div className={styles.actions}>
-        <Button icon='fa-regular fa-comment' onClick={() => props.setParent(props.comment)} text='' type='round' />
+        <Button
+          icon='fa-regular fa-comment'
+          onClick={() => {
+            props.setParent(props.comment);
+            scrollToBottom();
+          }}
+          text=''
+          type='round'
+        />
         {owner && (
           <>
-            <Button icon='fa-solid fa-pen' onClick={() => props.setEdit(props.comment)} text='' type='round' />
+            <Button
+              icon='fa-solid fa-pen'
+              onClick={() => {
+                props.setEdit(props.comment);
+                scrollToBottom();
+              }}
+              text=''
+              type='round'
+            />
             <Button icon='fa-solid fa-trash' onClick={handleDeleteComment} text='' type='round' />
           </>
         )}
