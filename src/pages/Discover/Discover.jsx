@@ -19,7 +19,7 @@ export const DiscoverPage = () => {
   const [desktop, setDesktop] = useState(false);
 
   const { activeGenre, genres } = useSelector((state) => state.genres);
-  const activeMovie = useSelector((state) => state.movies.activeMovie);
+  const { activeMovie, movies } = useSelector((state) => state.movies);
 
   const dispatch = useDispatch();
 
@@ -73,10 +73,10 @@ export const DiscoverPage = () => {
   useEffect(() => {
     if (activeGenre !== -1 && Object.keys(activeMovie).length === 0) {
       handleDiscoverMovies();
-    } else {
+    } else if (genres.length > 0 && movies.length > 0) {
       dispatch(setLoading(false));
     }
-  }, [activeGenre, activeMovie, dispatch, handleDiscoverMovies]);
+  }, [activeGenre, activeMovie, dispatch, genres.length, handleDiscoverMovies, movies.length]);
 
   const Buttons = () => {
     return (
