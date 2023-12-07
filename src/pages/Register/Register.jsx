@@ -7,7 +7,7 @@ import { Button } from '../../components/Button/Button';
 import { Input } from '../../components/Input/Input';
 import { setLoading } from '../../redux/reducers/shared';
 import { register } from '../../services/authentication.service';
-import { validateCredentials } from '../../tools';
+import { capitalize, validateCredentials } from '../../tools';
 
 export const RegisterPage = () => {
   const [email, setEmail] = useState('');
@@ -42,7 +42,7 @@ export const RegisterPage = () => {
         console.log(error);
         dispatch(setLoading(false));
 
-        setError(error.response.data.message);
+        setError(capitalize(error.response.data.message));
       }
     }
   };

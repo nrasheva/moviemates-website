@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import styles from './Navigation.module.css';
 import { setIsAuthenticated } from '../../redux/reducers/authentication';
+import { capitalize } from '../../tools';
 
 const MENU_ITEMS = { protected: ['home', 'profile'], public: ['home', 'login', 'register'] };
 
@@ -62,7 +63,7 @@ export const Navigation = () => {
           {MENU_ITEMS[isAuthenticated ? 'protected' : 'public'].map((menuItem) => {
             return (
               <span key={menuItem} onClick={() => handleLink(menuItem)}>
-                {menuItem.charAt(0).toUpperCase() + menuItem.slice(1)}
+                {capitalize(menuItem)}
               </span>
             );
           })}
