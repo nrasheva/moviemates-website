@@ -1,5 +1,6 @@
 .content {
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 .button-container {
