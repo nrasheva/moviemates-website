@@ -15,10 +15,23 @@ textarea {
   resize: none;
 }
 
-.button-container {
+.actions {
   border-top: 1px solid var(--border-color);
   display: flex;
+}
+
+.actions span {
+  display: flex;
+  flex: 1;
+  padding: 1rem;
+}
+
+.actions span:first-of-type {
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.actions span:last-of-type {
   gap: 1rem;
   justify-content: flex-end;
-  padding: 1rem 1rem 1rem 0;
 }

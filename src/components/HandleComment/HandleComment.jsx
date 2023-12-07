@@ -7,6 +7,8 @@ import { Button } from '../Button/Button';
 
 export const HandleComment = (props) => {
   const [content, setContent] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [warning, setWarning] = useState(false);
 
   useEffect(() => {
     if (props.comment && props.comment.content) {
@@ -15,6 +17,14 @@ export const HandleComment = (props) => {
       setContent('');
     }
   }, [props.comment]);
+
+  useEffect(() => {}, []);
+
+  useEffect(() => {
+    const issues = content.length < 1 ? 'You cannot submit an empty comment' : '';
+
+    setWarning(issues);
+  }, [content.length]);
 
   const handleCreateComment = async () => {
     try {
@@ -47,10 +57,14 @@ export const HandleComment = (props) => {
   };
 
   const handleAction = () => {
-    if (props.comment && props.comment.content) {
-      handleEditComment();
-    } else {
-      handleCreateComment();
+    setSubmitted(true);
+
+    if (!warning.length) {
+      if (props.comment && props.comment.content) {
+        handleEditComment();
+      } else {
+        handleCreateComment();
+      }
     }
   };
 
@@ -62,10 +76,13 @@ export const HandleComment = (props) => {
         e.preventDefault();
       }}>
       <textarea onChange={(e) => setContent(e.target.value)} placeholder='Enter comment' value={content} />
-      <span className={styles['button-container']}>
-        <Button icon='' onClick={handleAction} text='Submit' type='filled' />
-        <Button icon='' onClick={props.handleCancel} text='Cancel' type='outlined' />
-      </span>
+      <div className={styles.actions}>
+        <span>{submitted && Boolean(warning.length) && <p className='font-s white'>{warning}</p>}</span>
+        <span>
+          <Button icon='' onClick={handleAction} text='Submit' type='filled' />
+          <Button icon='' onClick={props.handleCancel} text='Cancel' type='outlined' />
+        </span>
+      </div>
     </form>
   );
 };
