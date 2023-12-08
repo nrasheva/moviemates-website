@@ -81,7 +81,7 @@ export const ProfilePage = () => {
           <Content
             buttons={null}
             heading='Watchlist'
-            subHeading='Lorem Ipsum is simply dummy text of the typesetting industry'
+            subHeading='Discover a world of captivating stories, all waiting in your watchlist'
           />
         </div>
         <div className='hero-row'>
