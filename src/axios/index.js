@@ -4,7 +4,7 @@ import { router } from '../main';
 import { validateToken } from '../tools';
 
 const baseURL = import.meta.env.VITE_API_BASE_URL;
-const timeout = 10000;
+const timeout = 20000;
 
 axios.defaults.baseURL = baseURL;
 axios.defaults.timeout = timeout;

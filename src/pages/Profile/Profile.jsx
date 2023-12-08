@@ -81,7 +81,7 @@ export const ProfilePage = () => {
           <Content
             buttons={null}
             heading='Watchlist'
-            subHeading='Lorem Ipsum is simply dummy text of the typesetting industry'
+            subHeading='Discover a world of captivating stories, all waiting in your watchlist'
           />
         </div>
         <div className='hero-row'>
@@ -97,7 +97,7 @@ export const ProfilePage = () => {
                     type='square'
                   />
                 </span>
-                <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
+                <img alt={movie.title} src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
               </div>
             ))}
           </div>

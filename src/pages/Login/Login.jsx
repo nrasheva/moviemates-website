@@ -8,7 +8,7 @@ import { Input } from '../../components/Input/Input';
 import { setIsAuthenticated } from '../../redux/reducers/authentication';
 import { setLoading } from '../../redux/reducers/shared';
 import { login } from '../../services/authentication.service';
-import { validateCredentials } from '../../tools';
+import { capitalize, validateCredentials } from '../../tools';
 
 export const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -47,7 +47,7 @@ export const LoginPage = () => {
         console.log(error);
         dispatch(setLoading(false));
 
-        setError(error.response.data.message);
+        setError(capitalize(error.response.data.message));
       }
     }
   };

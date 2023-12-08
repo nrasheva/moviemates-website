@@ -21,7 +21,7 @@
 }
 
 .slide {
-  background-color: var(--orange-web);
+  background-color: black;
   display: flex;
   flex: 0 0 calc(100% / 3 - 2rem);
   opacity: 0.5;

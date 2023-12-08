@@ -5,6 +5,10 @@ import { setWatchlist } from '../redux/reducers/watchlist';
 import { store } from '../redux/store';
 import { getWatchlist } from '../services/watchlist.service';
 
+export const capitalize = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
 export const decodeToken = () => {
   const token = localStorage.getItem('token');
 
