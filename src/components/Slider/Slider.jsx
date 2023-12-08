@@ -59,7 +59,11 @@ export const Slider = () => {
             className={`${styles.slide} ${activeMovie && activeMovie.id === movie.id ? styles.active : ''}`}
             key={movie.id}
             onClick={() => dispatch(setActiveMovie(movie))}>
-            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} style={{ maxWidth: '100%' }} />
+            <img
+              alt={movie.title}
+              src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`}
+              style={{ maxWidth: '100%' }}
+            />
           </div>
         ))}
       </div>

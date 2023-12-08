@@ -97,7 +97,7 @@ export const ProfilePage = () => {
                     type='square'
                   />
                 </span>
-                <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
+                <img alt={movie.title} src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
               </div>
             ))}
           </div>
