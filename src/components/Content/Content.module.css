@@ -3,6 +3,17 @@
   overflow-x: hidden;
 }
 
+.content > * {
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: all 0.5s ease-out;
+}
+
+.animated > * {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .button-container {
   display: flex;
   gap: 1rem;
