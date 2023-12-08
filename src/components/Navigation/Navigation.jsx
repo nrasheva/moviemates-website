@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import styles from './Navigation.module.css';
+import logo from '../../assets/logo.svg';
 import { setIsAuthenticated } from '../../redux/reducers/authentication';
 import { capitalize } from '../../tools';
 
@@ -56,7 +57,8 @@ export const Navigation = () => {
   return (
     <nav>
       <span className={styles['nav-logo']} onClick={() => navigate('/')}>
-        moviemates
+        m<img src={logo} style={{ height: '25px' }} />
+        viemates
       </span>
       <div className={styles['nav-content']}>
         <div className={`${styles['nav-items']} ${visible ? '' : styles.hidden}`}>
