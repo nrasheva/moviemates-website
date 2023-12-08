@@ -23,7 +23,6 @@ textarea {
 .actions span {
   display: flex;
   flex: 1;
-  padding: 1rem;
 }
 
 .actions span:first-of-type {
@@ -34,4 +33,24 @@ textarea {
 .actions span:last-of-type {
   gap: 1rem;
   justify-content: flex-end;
+}
+
+@media only screen and (min-width: 1200px) {
+  .actions span {
+    padding: 1rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .actions {
+    flex-direction: column-reverse;
+  }
+
+  .actions span {
+    justify-content: center !important;
+  }
+
+  .actions span:last-of-type {
+    padding: 1rem 0 1rem 1rem;
+  }
 }

@@ -57,7 +57,7 @@ export const HandleComment = (props) => {
   };
 
   const handleAction = () => {
-    setSubmitted(true);
+    setSubmitted(warning.length > 0);
 
     if (!warning.length) {
       if (props.comment && props.comment.content) {
