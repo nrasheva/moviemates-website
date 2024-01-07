@@ -57,7 +57,7 @@ export const Navigation = () => {
   return (
     <nav>
       <span className={styles['nav-logo']} onClick={() => navigate('/')}>
-        m<img src={logo} style={{ height: '25px' }} />
+        m<img alt='o' src={logo} style={{ height: '25px' }} />
         viemates
       </span>
       <div className={styles['nav-content']}>
